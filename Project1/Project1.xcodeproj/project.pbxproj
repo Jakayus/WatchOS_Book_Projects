@@ -17,6 +17,7 @@
 		DC34F80D272FB03B00127C51 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34F80C272FB03B00127C51 /* ComplicationController.swift */; };
 		DC34F80F272FB03C00127C51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC34F80E272FB03C00127C51 /* Assets.xcassets */; };
 		DC34F812272FB04000127C51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC34F811272FB04000127C51 /* Preview Assets.xcassets */; };
+		DCA9904827438237002F2ABA /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9904727438237002F2ABA /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		DC34F811272FB04000127C51 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC34F813272FB04000127C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC34F814272FB04000127C51 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		DCA9904727438237002F2ABA /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		DC34F7E9272FB03800127C51 = {
 			isa = PBXGroup;
 			children = (
+				DCA9904727438237002F2ABA /* Note.swift */,
 				DC34F7F8272FB03800127C51 /* Project1 WatchKit App */,
 				DC34F803272FB03B00127C51 /* Project1 WatchKit Extension */,
 				DC34F7F1272FB03800127C51 /* Products */,
@@ -271,6 +274,7 @@
 				DC34F80D272FB03B00127C51 /* ComplicationController.swift in Sources */,
 				DC34F805272FB03B00127C51 /* Project1App.swift in Sources */,
 				DC34F80B272FB03B00127C51 /* NotificationView.swift in Sources */,
+				DCA9904827438237002F2ABA /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 97BFAG7885;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JKSIndustries.Project1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -537,6 +542,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 97BFAG7885;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JKSIndustries.Project1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

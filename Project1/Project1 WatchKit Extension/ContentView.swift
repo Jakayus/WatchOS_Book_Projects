@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var notes = [Note]()
+    
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        VStack {
+            Text("Notes: \(notes.count)")
+            Button("Add Note") {
+                let note = Note(id: UUID(), text: "Example")
+                notes.append(note)
+            }
+        }
     }
 }
 
