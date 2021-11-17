@@ -13,10 +13,13 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Notes: \(notes.count)")
             Button("Add Note") {
                 let note = Note(id: UUID(), text: "Example")
                 notes.append(note)
+            }
+            // \.self = "the number itself will be unique"
+            List(0..<notes.count, id: \.self) { i in
+                Text(notes[i].text)
             }
         }
     }
