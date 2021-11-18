@@ -9,16 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var notes = [Note]()
+    @State private var notes = [Note]() //"this property represents the active, changing state of my porogram, and I want SwiftUI to manage it"
+    @State private var text = ""  //@State automatically creates a binding for our property that we can use anywhere we need to both read and write the value
+    
     
     var body: some View {
         VStack {
+            TextField("Add new note", text: $text)
+            
             Button("Add Note") {
-                let note = Note(id: UUID(), text: "Example")
+                guard text.isEmpty == false else { return }
+                
+                let note = Note(id: UUID(), text: text)
                 notes.append(note)
+                
+                text = ""
             }
-            // \.self = "the number itself will be unique"
-            List(0..<notes.count, id: \.self) { i in
+            
+            List(0..<notes.count, id: \.self) { i in // the "\.self" means the number itself will be unique
                 Text(notes[i].text)
             }
         }
