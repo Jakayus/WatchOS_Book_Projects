@@ -15,15 +15,23 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            TextField("Add new note", text: $text)
-            
-            Button("Add Note") {
-                guard text.isEmpty == false else { return }
+            HStack {
+                TextField("Add new note", text: $text)
                 
-                let note = Note(id: UUID(), text: text)
-                notes.append(note)
-                
-                text = ""
+                Button{
+                    guard text.isEmpty == false else { return }
+                    
+                    let note = Note(id: UUID(), text: text)
+                    notes.append(note)
+                    
+                    text = ""
+                    
+                }  label: {
+                    Image(systemName: "plus")
+                        .padding()
+                }
+                .fixedSize()
+                .buttonStyle(BorderedButtonStyle(tint: .teal))
             }
             
             List(0..<notes.count, id: \.self) { i in // the "\.self" means the number itself will be unique
