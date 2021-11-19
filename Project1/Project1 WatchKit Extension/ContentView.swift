@@ -35,7 +35,10 @@ struct ContentView: View {
             }
             
             List(0..<notes.count, id: \.self) { i in // the "\.self" means the number itself will be unique
-                Text(notes[i].text)
+                
+                NavigationLink(destination: DetailView(index: i, note: notes[i])) {
+                    Text(notes[i].text)
+                }
             }
         }
     }

@@ -18,6 +18,7 @@
 		DC34F80F272FB03C00127C51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC34F80E272FB03C00127C51 /* Assets.xcassets */; };
 		DC34F812272FB04000127C51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC34F811272FB04000127C51 /* Preview Assets.xcassets */; };
 		DCA9904827438237002F2ABA /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9904727438237002F2ABA /* Note.swift */; };
+		DCA9904A274776C7002F2ABA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA99049274776C7002F2ABA /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		DC34F813272FB04000127C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC34F814272FB04000127C51 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		DCA9904727438237002F2ABA /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		DCA99049274776C7002F2ABA /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			children = (
 				DC34F804272FB03B00127C51 /* Project1App.swift */,
 				DC34F806272FB03B00127C51 /* ContentView.swift */,
+				DCA99049274776C7002F2ABA /* DetailView.swift */,
 				DC34F808272FB03B00127C51 /* NotificationController.swift */,
 				DC34F80A272FB03B00127C51 /* NotificationView.swift */,
 				DC34F80C272FB03B00127C51 /* ComplicationController.swift */,
@@ -272,6 +275,7 @@
 				DC34F809272FB03B00127C51 /* NotificationController.swift in Sources */,
 				DC34F807272FB03B00127C51 /* ContentView.swift in Sources */,
 				DC34F80D272FB03B00127C51 /* ComplicationController.swift in Sources */,
+				DCA9904A274776C7002F2ABA /* DetailView.swift in Sources */,
 				DC34F805272FB03B00127C51 /* Project1App.swift in Sources */,
 				DC34F80B272FB03B00127C51 /* NotificationView.swift in Sources */,
 				DCA9904827438237002F2ABA /* Note.swift in Sources */,
