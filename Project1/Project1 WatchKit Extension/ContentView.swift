@@ -38,9 +38,11 @@ struct ContentView: View {
                 
                 NavigationLink(destination: DetailView(index: i, note: notes[i])) {
                     Text(notes[i].text)
+                        .lineLimit(1)
                 }
             }
         }
+        .navigationTitle("NoteDictate")
     }
 }
 
