@@ -34,11 +34,12 @@ struct ContentView: View {
                 .buttonStyle(BorderedButtonStyle(tint: .teal))
             }
             
-            List(0..<notes.count, id: \.self) { i in // the "\.self" means the number itself will be unique
-                
-                NavigationLink(destination: DetailView(index: i, note: notes[i])) {
-                    Text(notes[i].text)
-                        .lineLimit(1)
+            List {
+                ForEach(0..<notes.count, id: \.self) { i in
+                    NavigationLink(destination: DetailView(index: i, note: notes[i])){
+                        Text(notes[i].text)
+                            .lineLimit(1)
+                    }
                 }
             }
         }
