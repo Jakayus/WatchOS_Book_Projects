@@ -95,7 +95,6 @@
 		DC34F7E9272FB03800127C51 = {
 			isa = PBXGroup;
 			children = (
-				DCA9904727438237002F2ABA /* Note.swift */,
 				DC34F7F8272FB03800127C51 /* Project1 WatchKit App */,
 				DC34F803272FB03B00127C51 /* Project1 WatchKit Extension */,
 				DC34F7F1272FB03800127C51 /* Products */,
@@ -123,6 +122,7 @@
 		DC34F803272FB03B00127C51 /* Project1 WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DCA9904727438237002F2ABA /* Note.swift */,
 				DC34F804272FB03B00127C51 /* Project1App.swift */,
 				DC34F806272FB03B00127C51 /* ContentView.swift */,
 				DCA99049274776C7002F2ABA /* DetailView.swift */,
@@ -537,6 +537,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = JKSIndustries.Project1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -551,6 +552,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = JKSIndustries.Project1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};

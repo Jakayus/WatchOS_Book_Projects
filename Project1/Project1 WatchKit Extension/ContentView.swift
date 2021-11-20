@@ -8,42 +8,46 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State private var notes = [Note]() //"this property represents the active, changing state of my porogram, and I want SwiftUI to manage it"
-    @State private var text = ""  //@State automatically creates a binding for our property that we can use anywhere we need to both read and write the value
-    
-    
+    @State private var notes = [Note]()
+    @State private var text = ""
+
     var body: some View {
         VStack {
             HStack {
                 TextField("Add new note", text: $text)
-                
-                Button{
+
+                Button {
                     guard text.isEmpty == false else { return }
-                    
+
                     let note = Note(id: UUID(), text: text)
                     notes.append(note)
-                    
+
                     text = ""
-                    
-                }  label: {
+                } label: {
                     Image(systemName: "plus")
                         .padding()
                 }
                 .fixedSize()
-                .buttonStyle(BorderedButtonStyle(tint: .teal))
+                .buttonStyle(BorderedButtonStyle(tint: .blue))
             }
-            
+
             List {
                 ForEach(0..<notes.count, id: \.self) { i in
-                    NavigationLink(destination: DetailView(index: i, note: notes[i])){
+                    NavigationLink(destination: DetailView(index: i, note: notes[i])) {
                         Text(notes[i].text)
                             .lineLimit(1)
                     }
                 }
+                .onDelete(perform: delete)
             }
         }
         .navigationTitle("NoteDictate")
+    }
+
+    func delete(offsets: IndexSet) {
+        
+        print(offsets)
+        notes.remove(atOffsets: offsets)
     }
 }
 
