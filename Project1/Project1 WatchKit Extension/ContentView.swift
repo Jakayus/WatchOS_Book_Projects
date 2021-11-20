@@ -35,10 +35,16 @@ struct ContentView: View {
                 ForEach(0..<notes.count, id: \.self) { i in
                     NavigationLink(destination: DetailView(index: i, note: notes[i])) {
                         Text(notes[i].text)
-                            .lineLimit(1)
+                            //.lineLimit(1)
                     }
+                    
                 }
                 .onDelete(perform: delete)
+                
+                Button("Credits") {
+                    //TODO: Credits button for HW
+                    print("TODO")
+                }
             }
         }
         .navigationTitle("NoteDictate")
