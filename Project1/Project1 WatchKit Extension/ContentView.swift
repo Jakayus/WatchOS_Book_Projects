@@ -44,9 +44,12 @@ struct ContentView: View {
                 }
                 .onDelete(perform: delete)
                 
-                Button("Credits") {
-                    //TODO: Credits button for HW
-                    print("TODO")
+                NavigationLink (destination: CreditsView()) {
+                    HStack{
+                        Text("Credits")
+                        Image(systemName: "c.circle")
+                            .foregroundColor(.teal)
+                    }
                 }
             }
         }
