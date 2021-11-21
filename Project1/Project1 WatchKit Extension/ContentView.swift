@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var notes = [Note]()
     @State private var text = ""
+    @State private var totalNotes = 0
+    
 
     var body: some View {
         VStack {
@@ -21,6 +23,7 @@ struct ContentView: View {
 
                     let note = Note(id: UUID(), text: text)
                     notes.append(note)
+                    totalNotes += 1
 
                     text = ""
                 } label: {
@@ -33,9 +36,9 @@ struct ContentView: View {
 
             List {
                 ForEach(0..<notes.count, id: \.self) { i in
-                    NavigationLink(destination: DetailView(index: i, note: notes[i])) {
+                    NavigationLink(destination: DetailView(index: i, note: notes[i], totalNotes: totalNotes)) {
                         Text(notes[i].text)
-                            //.lineLimit(1)
+                            .lineLimit(3)
                     }
                     
                 }
@@ -51,9 +54,12 @@ struct ContentView: View {
     }
 
     func delete(offsets: IndexSet) {
-        
-        print(offsets)
-        notes.remove(atOffsets: offsets)
+        withAnimation {
+            notes.remove(atOffsets: offsets)
+        }
+        if totalNotes > 0 {
+            totalNotes -= 1
+        }
     }
 }
 
