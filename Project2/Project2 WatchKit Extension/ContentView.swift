@@ -7,11 +7,28 @@
 
 import SwiftUI
 
+//NOTE:
+//Text("Icons from icons8.com")
+  //  .padding()
+
 struct ContentView: View {
+    
+    @State private var question = "rock"
+    @State private var title = "Win"
+    
     var body: some View {
-        Text("Icons from icons8.com")
-            .padding()
+        VStack {
+            Image(question)
+            Divider()
+                .padding(.vertical)
+        }
+        .navigationTitle(title)
     }
+    
+    func select(move: String){
+        
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
