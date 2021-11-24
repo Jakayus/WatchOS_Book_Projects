@@ -13,14 +13,21 @@ import SwiftUI
 
 struct ContentView: View {
     
+    //MARK: - Properties
     @State private var question = "rock"
     @State private var title = "Win"
     
     @State private var shouldWin = true
     @State private var level = 1
     
-    let moves = ["rock", "paper", "scissors"]
+    @State private var currentTime = Date()
+    @State private var startTime = Date()
     
+    let moves = ["rock", "paper", "scissors"]
+    let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect() //autoconnect tells the timer to start publishing its time announcements immediately
+    
+    
+    //MARK: - View
     var body: some View {
         VStack {
             Image(question)
@@ -45,8 +52,12 @@ struct ContentView: View {
         }
         .navigationTitle(title)
         .onAppear(perform: newLevel)
+        .onReceive(timer) { newTime in
+            currentTime = newTime
+        }
     }
     
+    //MARK: - Functions
     func select(move: String){
         
     }
