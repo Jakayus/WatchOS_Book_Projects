@@ -16,6 +16,9 @@ struct ContentView: View {
     @State private var question = "rock"
     @State private var title = "Win"
     
+    @State private var shouldWin = true
+    @State private var level = 1
+    
     let moves = ["rock", "paper", "scissors"]
     
     var body: some View {
@@ -41,10 +44,23 @@ struct ContentView: View {
             }
         }
         .navigationTitle(title)
+        .onAppear(perform: newLevel)
     }
     
     func select(move: String){
         
+    }
+    
+    func newLevel() {
+        if Bool.random() {
+            title = "Win!"
+            shouldWin = true
+        } else {
+            title = "Lose!"
+            shouldWin = false
+        }
+        
+        question = moves.randomElement()! //force unwrap, but we know it is safe to do so
     }
     
 }
