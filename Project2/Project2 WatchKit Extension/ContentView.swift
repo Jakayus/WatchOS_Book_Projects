@@ -71,6 +71,16 @@ struct ContentView: View {
     //MARK: - Functions
     func select(move: String){
         
+        let solutions = [
+            "rock": (win: "paper", lose: "scissors"),
+            "paper": (win: "scissors", lose: "rock"),
+            "scissors": (win: "rock", lose: "paper")
+        ]
+        
+        guard let answer = solutions[question] else {
+            fatalError("Unknown quesiton: \(question)")
+        }
+        
     }
     
     func newLevel() {
