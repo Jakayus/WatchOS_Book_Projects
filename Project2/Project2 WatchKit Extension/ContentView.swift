@@ -26,6 +26,11 @@ struct ContentView: View {
     let moves = ["rock", "paper", "scissors"]
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect() //autoconnect tells the timer to start publishing its time announcements immediately
     
+    var time: String {
+        let difference = currentTime.timeIntervalSince(startTime)
+        return String(Int(difference))
+    }
+    
     
     //MARK: - View
     var body: some View {
@@ -49,6 +54,12 @@ struct ContentView: View {
                     
                 }
             }
+            HStack {
+                Text("\(level)/20")
+                Spacer()
+                Text("Time: \(time)")
+            }
+            .padding([.top, .horizontal])
         }
         .navigationTitle(title)
         .onAppear(perform: newLevel)
