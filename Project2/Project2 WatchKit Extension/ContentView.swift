@@ -25,7 +25,8 @@ struct ContentView: View {
     
     @State  private var gameOver = false //control whether the game is active or not
     
-    let moves = ["rock", "paper", "scissors"]
+    @State var moves = ["rock", "paper", "scissors"]
+    
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect() //autoconnect tells the timer to start publishing its time announcements immediately
     
     var time: String {
@@ -134,7 +135,18 @@ struct ContentView: View {
             shouldWin = false
         }
         
-        question = moves.randomElement()! //force unwrap, but we know it is safe to do so
+        
+        var tempQuestion = question
+        
+        repeat {
+            tempQuestion = moves.randomElement()! //force unwrap, but we know it is safe to do so
+        } while tempQuestion == question
+        
+       question = tempQuestion
+        
+        //reshuffle array
+        moves = moves.shuffled()
+        
     }
     
 }
