@@ -78,7 +78,24 @@ struct ContentView: View {
         ]
         
         guard let answer = solutions[question] else {
-            fatalError("Unknown quesiton: \(question)")
+            fatalError("Unknown question: \(question)")
+        }
+        
+        let isCorrect: Bool
+        
+        //determine if move is correct answer
+        if shouldWin {
+            isCorrect = move == answer.win
+        } else {
+            isCorrect = move == answer.lose
+        }
+        
+        //update levels
+        if isCorrect {
+            level += 1
+        } else {
+            level -= 1
+            if level < 1 { level = 1 }
         }
         
     }
