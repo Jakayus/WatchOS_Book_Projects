@@ -23,6 +23,8 @@ struct ContentView: View {
     @State private var currentTime = Date()
     @State private var startTime = Date()
     
+    @State  private var gameOver = false //control whether the game is active or not
+    
     let moves = ["rock", "paper", "scissors"]
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect() //autoconnect tells the timer to start publishing its time announcements immediately
     
@@ -35,35 +37,50 @@ struct ContentView: View {
     //MARK: - View
     var body: some View {
         VStack {
-            Image(question)
-                .resizable()
-                .scaledToFit()
-            Divider()
-                .padding(.vertical)
-            //HStack for 3 buttons
-            HStack{
-                ForEach(moves, id: \.self){ type in
-                    Button {
-                        select(move: type)
-                    } label: {
-                        Image(type)
-                            .resizable()
-                            .scaledToFit()
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    
+            if gameOver {
+                Text("You win!")
+                    .font(.largeTitle)
+                Text("Your time: \(time) seconds")
+                
+                Button("Play Again") {
+                    startTime = Date()
+                    gameOver = false
+                    level = 1
+                    newLevel()
                 }
+                .buttonStyle(BorderedButtonStyle(tint: .green))
+            } else {
+                Image(question)
+                    .resizable()
+                    .scaledToFit()
+                Divider()
+                    .padding(.vertical)
+                //HStack for 3 buttons
+                HStack{
+                    ForEach(moves, id: \.self){ type in
+                        Button {
+                            select(move: type)
+                        } label: {
+                            Image(type)
+                                .resizable()
+                                .scaledToFit()
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                    }
+                }
+                HStack {
+                    Text("\(level)/20")
+                    Spacer()
+                    Text("Time: \(time)")
+                }
+                .padding([.top, .horizontal])
             }
-            HStack {
-                Text("\(level)/20")
-                Spacer()
-                Text("Time: \(time)")
-            }
-            .padding([.top, .horizontal])
         }
         .navigationTitle(title)
         .onAppear(perform: newLevel)
         .onReceive(timer) { newTime in
+            guard gameOver == false else { return } //don't continue if game is over
             currentTime = newTime
         }
     }
@@ -98,9 +115,17 @@ struct ContentView: View {
             if level < 1 { level = 1 }
         }
         
+        newLevel()
+        
     }
     
     func newLevel() {
+        
+        if level == 21 {
+            gameOver = true
+            return
+        }
+        
         if Bool.random() {
             title = "Win!"
             shouldWin = true
