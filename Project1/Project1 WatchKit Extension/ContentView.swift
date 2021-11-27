@@ -22,10 +22,12 @@ struct ContentView: View {
                     guard text.isEmpty == false else { return }
 
                     let note = Note(id: UUID(), text: text)
-                    notes.append(note)
+                    notes.append(note) //append the note
                     totalNotes += 1
 
                     text = ""
+                    save()
+                    
                 } label: {
                     Image(systemName: "plus")
                         .padding()
@@ -56,14 +58,34 @@ struct ContentView: View {
         .navigationTitle("NoteDictate")
     }
 
+    
+    //MARK: - Methods
     func delete(offsets: IndexSet) {
         withAnimation {
             notes.remove(atOffsets: offsets)
         }
+        save()
         if totalNotes > 0 {
             totalNotes -= 1
         }
     }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func save() {
+        do {
+            let data = try JSONEncoder().encode(notes)
+            let url = getDocumentsDirectory().appendingPathComponent("notes")
+            try data.write(to: url)
+        } catch {
+            print("Save failed")
+        }
+    }//end save func
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
