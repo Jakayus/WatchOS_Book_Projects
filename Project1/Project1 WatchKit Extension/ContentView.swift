@@ -56,6 +56,7 @@ struct ContentView: View {
             }
         }
         .navigationTitle("NoteDictate")
+        .onAppear(perform: load)
     }
 
     
@@ -77,6 +78,11 @@ struct ContentView: View {
     
     func save() {
         do {
+            //1. use JSONEncoder to convert notes into Data instance
+            //2. create a new URL to save to our file, using getDocumentsDirectory function
+            //3. write data to URL
+            
+            
             let data = try JSONEncoder().encode(notes)
             let url = getDocumentsDirectory().appendingPathComponent("notes")
             try data.write(to: url)
@@ -84,6 +90,23 @@ struct ContentView: View {
             print("Save failed")
         }
     }//end save func
+    
+    func load() {
+        DispatchQueue.main.async {
+            do {
+                //1. make the file URL
+                //2. create a Data instance by loading it
+                //3. use JSONDecoder to convert data into an array of Note objects
+                
+                let url = getDocumentsDirectory().appendingPathComponent("notes")
+                let data = try Data(contentsOf: url)
+                notes = try JSONDecoder().decode([Note].self, from: data)
+            } catch {
+                //do nothing
+                //not an issue if no file is found, because that will be the case if file does not exist
+            }
+        }
+    }
     
     
 }
