@@ -12,8 +12,6 @@ struct ContentView: View {
     @State private var text = ""
     @State private var totalNotes = 0
     
-    
-    
 
     var body: some View {
         VStack {
