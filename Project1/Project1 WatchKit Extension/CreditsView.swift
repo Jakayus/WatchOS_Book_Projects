@@ -14,7 +14,8 @@ struct CreditsView: View {
                 .font(.headline)
             Text("Project1 completed 11/20/21")
                 .fontWeight(.thin)
-                
+            Text("Project3 (Project 1 update) completed 11/27/21")
+                .fontWeight(.thin)
         }
     }
 }

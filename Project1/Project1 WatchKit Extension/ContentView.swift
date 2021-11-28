@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var text = ""
     @State private var totalNotes = 0
     
+    @AppStorage("lineCount") var lineCount = 1 //AppStorage takes a property name, default value, and also a unique string to use as the name of the property
 
     var body: some View {
         VStack {
@@ -40,11 +41,19 @@ struct ContentView: View {
                 ForEach(0..<notes.count, id: \.self) { i in
                     NavigationLink(destination: DetailView(index: i, note: notes[i], totalNotes: totalNotes)) {
                         Text(notes[i].text)
-                            .lineLimit(3)
+                            .lineLimit(lineCount)
                     }
                     
                 }
                 .onDelete(perform: delete)
+                
+                Button("Lines: \(lineCount)") {
+                    lineCount += 1
+                    
+                    if lineCount == 4 {
+                        lineCount = 1
+                    }
+                }
                 
                 NavigationLink (destination: CreditsView()) {
                     HStack{
