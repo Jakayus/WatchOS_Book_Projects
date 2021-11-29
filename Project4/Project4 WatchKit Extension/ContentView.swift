@@ -22,12 +22,18 @@ struct ContentView: View {
             //1. move between 0 and 1000 inclusive
             //2. sets the step count to 20 (up/down by 20)
             //3. two way binding for amount property
-            Picker("Select a currency", selection: $selectedCurrency) {
-                ForEach(Self.currencies, id: \.self) { currency in
-                    Text(currency)
+            HStack {
+                Picker("Select a currency", selection: $selectedCurrency) {
+                    ForEach(Self.currencies, id: \.self) { currency in
+                        Text(currency)
+                    }
+                }//end Picker
+                .labelsHidden()
+                
+                NavigationLink(destination: Text("Detail View")) {
+                    Text("Go")
                 }
-            }//end Picker
-            .labelsHidden()
+            }
             
             //Picker notes
             //1. two way binding to selectedCurrency
