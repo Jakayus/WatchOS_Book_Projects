@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var amount = 500.0
+    
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        VStack {
+            Text("\(Int(amount))")
+                .font(.system(size: 52))
+            Slider(value: $amount, in: 0...1000, step: 20)
+            //Slider notes
+            //1. move between 0 and 1000 inclusive
+            //2. sets the step count to 20 (up/down by 20)
+            //3. two way binding for amount property
+        }
     }
 }
 
