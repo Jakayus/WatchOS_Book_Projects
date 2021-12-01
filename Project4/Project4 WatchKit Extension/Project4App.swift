@@ -12,7 +12,7 @@ struct Project4App: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                MainView()
             }
         }
     }
