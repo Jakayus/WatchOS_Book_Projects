@@ -134,8 +134,6 @@
 		DC74EF5427531E0900780AD5 = {
 			isa = PBXGroup;
 			children = (
-				DCA7FC47275AD058003052C1 /* OER-Info-Sample.plist */,
-				DCA7FC43275AC070003052C1 /* OER-Info.plist */,
 				DC74EF6327531E0900780AD5 /* Project4 WatchKit App */,
 				DC74EF6E27531E0A00780AD5 /* Project4 WatchKit Extension */,
 				DC74EF8227531E0D00780AD5 /* Project4Tests */,
@@ -167,6 +165,8 @@
 		DC74EF6E27531E0A00780AD5 /* Project4 WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DCA7FC47275AD058003052C1 /* OER-Info-Sample.plist */,
+				DCA7FC43275AC070003052C1 /* OER-Info.plist */,
 				DCA7FC45275ACD30003052C1 /* DataTypes.swift */,
 				DCA7FC3F27574DAE003052C1 /* MainView.swift */,
 				DCA7FC412759E822003052C1 /* ResultsView.swift */,
