@@ -18,7 +18,7 @@ struct CurrenciesView: View {
         List {
             ForEach(ContentView.currencies, id: \.self) { currency in
                 Button(currency) {
-                    
+                    toggle(currency)
                 }
                 .listItemTint(selectedCurrencies.contains(currency) ? selectedColor : deselectedColor)
             }
@@ -26,6 +26,18 @@ struct CurrenciesView: View {
         .listStyle(CarouselListStyle())
         .navigationTitle("Currencies")
         
+    }
+    
+    func toggle(_ currency: String) {
+        if let index = selectedCurrencies.firstIndex(of: currency) {
+            //if the currency is in selected currencies, remove it
+            selectedCurrencies.remove(at: index)
+        } else {
+            selectedCurrencies.append(currency)
+        }
+        
+        //save the new currencies
+        UserDefaults.standard.set(selectedCurrencies, forKey: ContentView.selectedCurrenciesKey)
     }
 }
 

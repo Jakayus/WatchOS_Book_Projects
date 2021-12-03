@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var amount = 500.0
     @State private var selectedCurrency = "USD"
-    @State private var selectedeCurrencies = UserDefaults.standard.array(forKey: ContentView.selectedCurrenciesKey) as? [String] ?? ContentView.defaultCurrencies
+    @State private var selectedCurrencies = UserDefaults.standard.array(forKey: ContentView.selectedCurrenciesKey) as? [String] ?? ContentView.defaultCurrencies
     
     static let currencies = ["USD", "AUD", "CAD", "CHF", "CNY", "EUR", "GBP", "HKD", "JPY", "SGD"] //static will allow the array to be used elsewhere in the app
     static let selectedCurrenciesKey = "SelectedCurrencies"
