@@ -22,6 +22,7 @@
 		DCA7FC4027574DAE003052C1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC3F27574DAE003052C1 /* MainView.swift */; };
 		DCA7FC422759E822003052C1 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC412759E822003052C1 /* ResultsView.swift */; };
 		DCA7FC44275AC070003052C1 /* OER-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCA7FC43275AC070003052C1 /* OER-Info.plist */; };
+		DCA7FC46275ACD30003052C1 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC45275ACD30003052C1 /* DataTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		DCA7FC3F27574DAE003052C1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DCA7FC412759E822003052C1 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		DCA7FC43275AC070003052C1 /* OER-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OER-Info.plist"; sourceTree = "<group>"; };
+		DCA7FC45275ACD30003052C1 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		DC74EF6E27531E0A00780AD5 /* Project4 WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DCA7FC45275ACD30003052C1 /* DataTypes.swift */,
 				DCA7FC3F27574DAE003052C1 /* MainView.swift */,
 				DCA7FC412759E822003052C1 /* ResultsView.swift */,
 				DCA7FC3D27574D82003052C1 /* CurrenciesView.swift */,
@@ -393,6 +396,7 @@
 				DCA7FC3E27574D82003052C1 /* CurrenciesView.swift in Sources */,
 				DC74EF7027531E0A00780AD5 /* ContentView.swift in Sources */,
 				DCA7FC4027574DAE003052C1 /* MainView.swift in Sources */,
+				DCA7FC46275ACD30003052C1 /* DataTypes.swift in Sources */,
 				DC74EF7427531E0A00780AD5 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

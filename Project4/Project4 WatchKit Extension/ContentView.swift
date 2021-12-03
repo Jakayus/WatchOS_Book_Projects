@@ -56,10 +56,26 @@ struct ContentView: View {
                 
             }//end VStack
             .navigationTitle("WatchFX")
-            
+            .onAppear {
+                checkAPI()
+            }
         }//end Geometry Reader
     }//end View
     
+    
+    func checkAPI() {
+        
+        //NOTE: ERROR Handling is at a minimum! Do not use for production
+        
+        
+        if let path = Bundle.main.path(forResource: "OER-Info", ofType: "plist"),    //get path to plist
+           let xml = FileManager.default.contents(atPath: path),                     //assign data to xml
+           let OERkey = try? PropertyListDecoder().decode(OERInfo.self, from: xml)   //decode property list file to an instance of OERInfo. same syntax as decoding/encoding JSON, but using a different decoder instance
+        {
+            //Debug
+            print(OERkey.API_KEY)
+        }
+    }
     
 }
 
