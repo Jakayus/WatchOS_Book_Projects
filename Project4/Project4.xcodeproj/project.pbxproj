@@ -20,6 +20,7 @@
 		DC74EF9027531E0E00780AD5 /* Project4UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74EF8F27531E0E00780AD5 /* Project4UITestsLaunchTests.swift */; };
 		DCA7FC3E27574D82003052C1 /* CurrenciesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC3D27574D82003052C1 /* CurrenciesView.swift */; };
 		DCA7FC4027574DAE003052C1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC3F27574DAE003052C1 /* MainView.swift */; };
+		DCA7FC422759E822003052C1 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC412759E822003052C1 /* ResultsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		DC74EF8F27531E0E00780AD5 /* Project4UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project4UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DCA7FC3D27574D82003052C1 /* CurrenciesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesView.swift; sourceTree = "<group>"; };
 		DCA7FC3F27574DAE003052C1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		DCA7FC412759E822003052C1 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				DCA7FC3F27574DAE003052C1 /* MainView.swift */,
+				DCA7FC412759E822003052C1 /* ResultsView.swift */,
 				DCA7FC3D27574D82003052C1 /* CurrenciesView.swift */,
 				DC74EF6F27531E0A00780AD5 /* ContentView.swift */,
 				DC74EF7127531E0A00780AD5 /* Project4App.swift */,
@@ -382,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC74EF7227531E0A00780AD5 /* Project4App.swift in Sources */,
+				DCA7FC422759E822003052C1 /* ResultsView.swift in Sources */,
 				DCA7FC3E27574D82003052C1 /* CurrenciesView.swift in Sources */,
 				DC74EF7027531E0A00780AD5 /* ContentView.swift in Sources */,
 				DCA7FC4027574DAE003052C1 /* MainView.swift in Sources */,

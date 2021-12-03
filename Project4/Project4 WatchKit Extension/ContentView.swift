@@ -41,7 +41,7 @@ struct ContentView: View {
                     }//end Picker
                     .labelsHidden()
                     
-                    NavigationLink(destination: Text("Detail View")) {
+                    NavigationLink(destination: ResultsView(amount: amount, baseCurrency: selectedCurrency)) {
                         Text("Go")
                     }
                     .frame(width: geo.size.width * 0.4) //40% of available width
