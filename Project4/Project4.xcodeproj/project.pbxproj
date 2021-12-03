@@ -23,6 +23,7 @@
 		DCA7FC422759E822003052C1 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC412759E822003052C1 /* ResultsView.swift */; };
 		DCA7FC44275AC070003052C1 /* OER-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCA7FC43275AC070003052C1 /* OER-Info.plist */; };
 		DCA7FC46275ACD30003052C1 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC45275ACD30003052C1 /* DataTypes.swift */; };
+		DCA7FC48275AD058003052C1 /* OER-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCA7FC47275AD058003052C1 /* OER-Info-Sample.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		DCA7FC412759E822003052C1 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		DCA7FC43275AC070003052C1 /* OER-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OER-Info.plist"; sourceTree = "<group>"; };
 		DCA7FC45275ACD30003052C1 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
+		DCA7FC47275AD058003052C1 /* OER-Info-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OER-Info-Sample.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		DC74EF5427531E0900780AD5 = {
 			isa = PBXGroup;
 			children = (
+				DCA7FC47275AD058003052C1 /* OER-Info-Sample.plist */,
 				DCA7FC43275AC070003052C1 /* OER-Info.plist */,
 				DC74EF6327531E0900780AD5 /* Project4 WatchKit App */,
 				DC74EF6E27531E0A00780AD5 /* Project4 WatchKit Extension */,
@@ -247,6 +250,7 @@
 				DC74EF6627531E0A00780AD5 /* Sources */,
 				DC74EF6727531E0A00780AD5 /* Frameworks */,
 				DC74EF6827531E0A00780AD5 /* Resources */,
+				DCA7FC4A275AD0A8003052C1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -365,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC74EF7927531E0B00780AD5 /* Preview Assets.xcassets in Resources */,
+				DCA7FC48275AD058003052C1 /* OER-Info-Sample.plist in Resources */,
 				DCA7FC44275AC070003052C1 /* OER-Info.plist in Resources */,
 				DC74EF7627531E0B00780AD5 /* Assets.xcassets in Resources */,
 			);
@@ -385,6 +390,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DCA7FC4A275AD0A8003052C1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\nCONFIG_FILE_BASE_NAME=\"OER-Info\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC74EF6627531E0A00780AD5 /* Sources */ = {
