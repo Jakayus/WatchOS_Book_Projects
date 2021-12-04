@@ -47,14 +47,14 @@ struct ContentView: View {
                 Text("\(Int(amount))")
                     .font(.system(size: 52))
                     .frame(height: geo.size.height / 3)
+                    .focusable()
+                    .digitalCrownRotation($amount, from: 0, through: 1000, by: 20, sensitivity: .high, isContinuous: false, isHapticFeedbackEnabled: true)
+                //focusable modifier tells watchOS that this text view can ber focused
+                //sensitivity controls how far the user needs to turn the crown in order to move the value
+                //isContinuous controls whhether value should wrap
+                //isHapticFeedbackEnabled controls if Taptic Engine creates feedback as the crown is turned
                 
-                Slider(value: $amount, in: 0...1000, step: 20)
-                    .accentColor(.green)
-                    .frame(height: geo.size.height / 3)
-                //Slider notes
-                //1. move between 0 and 1000 inclusive
-                //2. sets the step count to 20 (up/down by 20)
-                //3. two way binding for amount property
+                
                 HStack {
                     Picker("Select a currency", selection: $selectedCurrency) {
                         ForEach(Self.currencies, id: \.self) { currency in
