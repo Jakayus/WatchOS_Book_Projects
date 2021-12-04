@@ -22,7 +22,7 @@
 		DCA7FC4027574DAE003052C1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC3F27574DAE003052C1 /* MainView.swift */; };
 		DCA7FC422759E822003052C1 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC412759E822003052C1 /* ResultsView.swift */; };
 		DCA7FC46275ACD30003052C1 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA7FC45275ACD30003052C1 /* DataTypes.swift */; };
-		DCA7FC48275AD058003052C1 /* OER-Info-Sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCA7FC47275AD058003052C1 /* OER-Info-Sample.plist */; };
+		DCD071FC275AE8A700706A1C /* OER-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCA7FC43275AC070003052C1 /* OER-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,7 +100,7 @@
 		DCA7FC3D27574D82003052C1 /* CurrenciesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesView.swift; sourceTree = "<group>"; };
 		DCA7FC3F27574DAE003052C1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DCA7FC412759E822003052C1 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
-		DCA7FC43275AC070003052C1 /* OER-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OER-Info.plist"; sourceTree = "<group>"; };
+		DCA7FC43275AC070003052C1 /* OER-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "OER-Info.plist"; path = "../OER-Info.plist"; sourceTree = "<group>"; };
 		DCA7FC45275ACD30003052C1 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 		DCA7FC47275AD058003052C1 /* OER-Info-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OER-Info-Sample.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -367,8 +367,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD071FC275AE8A700706A1C /* OER-Info.plist in Resources */,
 				DC74EF7927531E0B00780AD5 /* Preview Assets.xcassets in Resources */,
-				DCA7FC48275AD058003052C1 /* OER-Info-Sample.plist in Resources */,
 				DC74EF7627531E0B00780AD5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
