@@ -28,7 +28,19 @@ struct ResultsView: View {
     
     //MARK: - View
     var body: some View {
-        Text("Hello, World! \(apiKey)")
+        Group {
+            if fetchState == .success {
+                List {
+                    ForEach (fetchedCurrencies, id: \.symbol) { currency in
+                        Text(rate(for: currency))
+                    }
+                }
+            } else {
+                Text(fetchState == .fetching ? "Fetching..." : "Fetch failed")
+            }
+        }
+        .onAppear(perform: fetchData)
+        .navigationTitle("\(Int(amount)) \(baseCurrency)")
     }
     
     
@@ -81,6 +93,17 @@ struct ResultsView: View {
                 .receive(on: DispatchQueue.main)
                 .sink(receiveValue: parse)
         }
+    }
+    
+    func rate(for currency: (symbol: String, rate: Double)) -> String {
+        //1. take in a currency tuple (symbol and rate)
+        //2. multiply the rate by how much the user asked to convert to
+        //3. format rate as string (2 decimal places)
+        //4. return a string with symbol and rate
+        
+        let value = currency.rate * amount
+        let rate = String(format: "%.2f", value)
+        return "\(currency.symbol) \(rate)"
     }
     
 }
