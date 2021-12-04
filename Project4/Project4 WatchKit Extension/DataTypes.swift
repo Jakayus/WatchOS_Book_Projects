@@ -10,3 +10,8 @@ import Foundation
 struct OERInfo : Codable {
     var API_KEY : String
 }
+
+struct CurrencyResult: Codable {
+    let base: String
+    let rates: [String: Double]
+}
