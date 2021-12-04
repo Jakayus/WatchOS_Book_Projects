@@ -35,6 +35,32 @@ struct ResultsView: View {
     //MARK: - Methods
     func parse(result: CurrencyResult) {
         
+        //1. fetch data and determine if fetch is successful by checking rates within results
+        //2. read the user's list of currencies or otherwise use default
+        //3. loop rates received from OER
+        //4. if the currency is in selected currencies list, add its symbol and value to fetchedCurrencies array
+        //5. sort the array after all currencies received
+        
+        if result.rates.isEmpty {
+            //fetch error
+            fetchState = .failed
+        } else {
+            //fetch succeeded
+            fetchState = .success
+            
+            //read the user's selected currencies
+            let selectedCurrencies = UserDefaults.standard.array(forKey: ContentView.selectedCurrenciesKey) as? [String] ?? ContentView.defaultCurrencies
+            
+            for symbol in result.rates {
+                //filter the rates so we only show ones the user cares about
+                guard selectedCurrencies.contains(symbol.key) else { continue }
+                let rateName = symbol.key
+                let rateValue = symbol.value
+                fetchedCurrencies.append((symbol: rateName, rate: rateValue))
+            }
+            
+            fetchedCurrencies.sort { $0.symbol < $1.symbol}
+        }
     }
     
     func fetchData() {
