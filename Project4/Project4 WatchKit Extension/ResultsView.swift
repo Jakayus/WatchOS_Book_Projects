@@ -19,14 +19,15 @@ struct ResultsView: View {
     
     let amount: Double
     let baseCurrency: String
+    @State var ApiKey: String
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, World! \(ApiKey)")
     }
 }
 
 struct ResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultsView(amount: 500, baseCurrency: "USD")
+        ResultsView(amount: 500, baseCurrency: "USD", ApiKey: "test")
     }
 }
