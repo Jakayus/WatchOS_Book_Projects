@@ -16,6 +16,28 @@ struct ContentView: View {
     static let selectedCurrenciesKey = "SelectedCurrencies"
     static let defaultCurrencies = ["USD", "EUR"]
     
+    //instead of calling function, we are using a computed String for API key
+    private var apiKey: String {
+      get {
+        // 1
+        guard let filePath = Bundle.main.path(forResource: "OER-Info", ofType: "plist") else {
+          fatalError("Couldn't find file 'OER-Info.plist'.")
+        }
+        // 2
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "API_KEY") as? String else {
+          fatalError("Couldn't find key 'API_KEY' in 'OER-Info.plist'.")
+        }
+        // 3
+        if (value.starts(with: "_")) {
+          fatalError("Register for an API key at Open Exchange Rates.")
+        }
+        return value
+      }
+    }
+    
+    
+    
     
     
     var body: some View {
@@ -57,7 +79,8 @@ struct ContentView: View {
             }//end VStack
             .navigationTitle("WatchFX")
             .onAppear {
-                checkAPI()
+                print(apiKey)
+                //checkAPI()
             }
         }//end Geometry Reader
     }//end View
@@ -67,14 +90,19 @@ struct ContentView: View {
         
         //NOTE: ERROR Handling is at a minimum! Do not use for production
         
-        
+        print("function call checkAPI")
         if let path = Bundle.main.path(forResource: "OER-Info", ofType: "plist"),    //get path to plist
            let xml = FileManager.default.contents(atPath: path),                     //assign data to xml
            let OERkey = try? PropertyListDecoder().decode(OERInfo.self, from: xml)   //decode property list file to an instance of OERInfo. same syntax as decoding/encoding JSON, but using a different decoder instance
         {
             //Debug
             print(OERkey.API_KEY)
+        } else
+        {
+            print("no data")
         }
+   
+        
     }
     
 }
