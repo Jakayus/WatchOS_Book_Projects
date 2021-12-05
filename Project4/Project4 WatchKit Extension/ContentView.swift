@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var amount = 500.0
+    @State private var amount = UserDefaults.standard.double(forKey: "amount")
+
     @State private var selectedCurrency = "USD"
     @State private var selectedCurrencies = UserDefaults.standard.array(forKey: ContentView.selectedCurrenciesKey) as? [String] ?? ContentView.defaultCurrencies
     @State private var amountFocused = false
@@ -94,6 +95,13 @@ struct ContentView: View {
             }
         }//end Geometry Reader
     }//end View
+    
+    //Useful code snippet for watchOS - it asks for the app's documents directory
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
     
     
     
