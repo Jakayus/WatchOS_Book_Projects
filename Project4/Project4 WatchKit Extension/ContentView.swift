@@ -11,10 +11,13 @@ struct ContentView: View {
     @State private var amount = 500.0
     @State private var selectedCurrency = "USD"
     @State private var selectedCurrencies = UserDefaults.standard.array(forKey: ContentView.selectedCurrenciesKey) as? [String] ?? ContentView.defaultCurrencies
+    @State private var amountFocused = false
+    
     
     static let currencies = ["USD", "AUD", "CAD", "CHF", "CNY", "EUR", "GBP", "HKD", "JPY", "SGD"] //static will allow the array to be used elsewhere in the app
     static let selectedCurrenciesKey = "SelectedCurrencies"
     static let defaultCurrencies = ["USD", "EUR"]
+    
     
     //instead of calling function, we are using a computed String for API key
     private var apiKey: String {
@@ -46,9 +49,16 @@ struct ContentView: View {
             VStack (spacing: 0) {
                 Text("\(Int(amount))")
                     .font(.system(size: 52))
-                    .frame(height: geo.size.height / 3)
+                    .padding()
+                    .frame(width: geo.size.width)
+                    .contentShape(Rectangle())
                     .focusable()
                     .digitalCrownRotation($amount, from: 0, through: 1000, by: 20, sensitivity: .high, isContinuous: false, isHapticFeedbackEnabled: true)
+                    .overlay (
+                        RoundedRectangle(cornerRadius: 10)
+                            .strokeBorder(amountFocused ? Color.green : Color.white, lineWidth: 1)
+                    )
+                    .padding(.bottom)
                 //focusable modifier tells watchOS that this text view can ber focused
                 //sensitivity controls how far the user needs to turn the crown in order to move the value
                 //isContinuous controls whhether value should wrap
