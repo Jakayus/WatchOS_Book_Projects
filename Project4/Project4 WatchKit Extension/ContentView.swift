@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var amount = UserDefaults.standard.double(forKey: "amount")
+    @State private var amount:Double = 500 //UserDefaults.standard.double(forKey: "amount")
 
     @State private var selectedCurrency = "USD"
     @State private var selectedCurrencies = UserDefaults.standard.array(forKey: ContentView.selectedCurrenciesKey) as? [String] ?? ContentView.defaultCurrencies
@@ -78,6 +78,9 @@ struct ContentView: View {
                         Text("Go")
                     }
                     .frame(width: geo.size.width * 0.4) //40% of available width
+                    .onTapGesture {
+                        saveData()
+                    }
                 }
                 .frame(height: geo.size.height / 3)
                 
@@ -92,6 +95,7 @@ struct ContentView: View {
             .onAppear {
                 print(apiKey)
                 //checkAPI()
+                loadData()
             }
         }//end Geometry Reader
     }//end View
@@ -102,7 +106,15 @@ struct ContentView: View {
         return paths[0]
     }
     
+    func saveData() {
+        UserDefaults.standard.set(selectedCurrency, forKey: "selectedCurrency")
+        UserDefaults.standard.set(amount, forKey: "amount")
+    }
     
+    func loadData() {
+        selectedCurrency = UserDefaults.standard.string(forKey: "selectedCurrency") ?? "USD"
+        amount = UserDefaults.standard.double(forKey: "amount")
+    }
     
     
 }
