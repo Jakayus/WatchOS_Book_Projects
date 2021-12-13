@@ -12,6 +12,7 @@ struct MainView: View {
         TabView {
             ContentView()
             CurrenciesView()
+            DefaultValues()
         }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC0FEE202763383E00DCCC16 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0FEE1F2763383E00DCCC16 /* DefaultValues.swift */; };
 		DC74EF6027531E0900780AD5 /* Project4 WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC74EF5F27531E0900780AD5 /* Project4 WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC74EF6527531E0A00780AD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC74EF6427531E0A00780AD5 /* Assets.xcassets */; };
 		DC74EF6B27531E0A00780AD5 /* Project4 WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC74EF6A27531E0A00780AD5 /* Project4 WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -82,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC0FEE1F2763383E00DCCC16 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		DC74EF5B27531E0900780AD5 /* Project4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC74EF5F27531E0900780AD5 /* Project4 WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project4 WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC74EF6427531E0A00780AD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				DCA7FC43275AC070003052C1 /* OER-Info.plist */,
 				DCA7FC45275ACD30003052C1 /* DataTypes.swift */,
 				DCA7FC3F27574DAE003052C1 /* MainView.swift */,
+				DC0FEE1F2763383E00DCCC16 /* DefaultValues.swift */,
 				DCA7FC412759E822003052C1 /* ResultsView.swift */,
 				DCA7FC3D27574D82003052C1 /* CurrenciesView.swift */,
 				DC74EF6F27531E0A00780AD5 /* ContentView.swift */,
@@ -417,6 +420,7 @@
 				DC74EF7227531E0A00780AD5 /* Project4App.swift in Sources */,
 				DCA7FC422759E822003052C1 /* ResultsView.swift in Sources */,
 				DCA7FC3E27574D82003052C1 /* CurrenciesView.swift in Sources */,
+				DC0FEE202763383E00DCCC16 /* DefaultValues.swift in Sources */,
 				DC74EF7027531E0A00780AD5 /* ContentView.swift in Sources */,
 				DCA7FC4027574DAE003052C1 /* MainView.swift in Sources */,
 				DCA7FC46275ACD30003052C1 /* DataTypes.swift in Sources */,

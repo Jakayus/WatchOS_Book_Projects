@@ -97,6 +97,7 @@ struct ContentView: View {
                 //checkAPI()
                 loadData()
             }
+            
         }//end Geometry Reader
     }//end View
     
