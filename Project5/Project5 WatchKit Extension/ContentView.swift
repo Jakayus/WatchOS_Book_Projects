@@ -23,8 +23,16 @@ struct ContentView: View {
     
     //MARK: - View
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        VStack(spacing: 10) {
+            HStack (spacing: 10){
+                text(for: 0)
+                text(for: 1)
+            }
+            HStack (spacing: 10) {
+                text(for: 2)
+                text(for: 3)
+            }
+        }
     }
     
     //MARK: - Methods
@@ -32,7 +40,10 @@ struct ContentView: View {
         let title = colorKeys[index]
         
         return Text(title)
-            .background(colors[colorKeys[index]])
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(colors[colorKeys[index]]) //modifier order matters - apply frame THEN background
+            .cornerRadius(20)
+            
     }
 }
 
