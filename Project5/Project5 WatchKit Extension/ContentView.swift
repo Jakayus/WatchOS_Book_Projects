@@ -44,12 +44,22 @@ struct ContentView: View {
     //MARK: - Methods
     //NOTE: this function returns a View, which is then used within the View property above
     func text(for index: Int) -> some View {
-        let title = colorKeys[index]
+        let title: String
         
+        if index == correctAnswer {
+            title = colorKeys[colorKeys.count - 1] //use index value that is not part of 0-3
+        } else {
+            title = colorKeys[index]
+        }
+        
+        //NOTE: after returning a View, modifiers can be applied
         return Text(title)
             .frame(maxWidth: .infinity, maxHeight: .infinity) //.infinity takes up all available space
             .background(colors[colorKeys[index]]) //modifier order matters - apply frame THEN background
             .cornerRadius(20)
+            .onTapGesture {
+                tapped(index)
+            }
             
     }
     
@@ -57,7 +67,7 @@ struct ContentView: View {
         title = "Level \(currentLevel)/10"
         
         correctAnswer = Int.random(in: 0...3)
-        colorKeys.shuffle()
+        colorKeys.shuffle() //only the first 4 colors (index 0-3) are used
     }
     
     func startNewGame() {
@@ -65,6 +75,20 @@ struct ContentView: View {
         gameOver = false
         createLevel()
     }
+    
+    func tapped(_ index: Int){
+        //current level goes up/down depending on valid answer
+        if index == correctAnswer {
+            currentLevel += 1
+        } else {
+            if currentLevel > 1 {
+                currentLevel -= 1
+            }
+        }
+        
+        createLevel()
+    }
+    
     
 }
 
