@@ -20,6 +20,10 @@ struct ContentView: View {
     ]
     
     @State private var colorKeys = ["Red", "Green", "Blue", "Orange", "Purple", "Black"]
+    @State private var correctAnswer = 0
+    @State private var currentLevel = 0
+    @State private var gameOver = false
+    @State private var title = ""
     
     //MARK: - View
     var body: some View {
@@ -33,18 +37,35 @@ struct ContentView: View {
                 text(for: 3)
             }
         }
+        .navigationTitle(title)
+        .onAppear(perform: startNewGame)
     }
     
     //MARK: - Methods
+    //NOTE: this function returns a View, which is then used within the View property above
     func text(for index: Int) -> some View {
         let title = colorKeys[index]
         
         return Text(title)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity) //.infinity takes up all available space
             .background(colors[colorKeys[index]]) //modifier order matters - apply frame THEN background
             .cornerRadius(20)
             
     }
+    
+    func createLevel() {
+        title = "Level \(currentLevel)/10"
+        
+        correctAnswer = Int.random(in: 0...3)
+        colorKeys.shuffle()
+    }
+    
+    func startNewGame() {
+        currentLevel = 1
+        gameOver = false
+        createLevel()
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
