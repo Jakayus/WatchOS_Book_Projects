@@ -24,6 +24,7 @@ struct ContentView: View {
     @State private var currentLevel = 0
     @State private var gameOver = false
     @State private var title = ""
+    @State private var startTime = Date()
     
     //MARK: - View
     var body: some View {
@@ -39,9 +40,19 @@ struct ContentView: View {
         }
         .navigationTitle(title)
         .onAppear(perform: startNewGame)
+        .sheet(isPresented: $gameOver) {
+            //sheet content here
+            VStack {
+                Text("You win!")
+                    .font(.largeTitle)
+                Text("You finished in \(Int(Date().timeIntervalSince(startTime))) seconds")
+                Button("Play Again", action: startNewGame) //no parantheses as we are passing the function directly, instead of calling it then passing whatever the function sends back
+            }
+        }
     }
     
     //MARK: - Methods
+    
     //NOTE: this function returns a View, which is then used within the View property above
     func text(for index: Int) -> some View {
         let title: String
@@ -60,7 +71,6 @@ struct ContentView: View {
             .onTapGesture {
                 tapped(index)
             }
-            
     }
     
     func createLevel() {
@@ -74,6 +84,7 @@ struct ContentView: View {
         currentLevel = 1
         gameOver = false
         createLevel()
+        startTime = Date() //reset whenever a new game is started
     }
     
     func tapped(_ index: Int){
@@ -86,6 +97,9 @@ struct ContentView: View {
             }
         }
         
+        if currentLevel == 11 {
+            gameOver = true
+        }
         createLevel()
     }
     
