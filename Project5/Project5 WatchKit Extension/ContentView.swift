@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
     
@@ -101,6 +102,33 @@ struct ContentView: View {
             gameOver = true
         }
         createLevel()
+    }
+    
+    func createNotification() {
+        let center = UNUserNotificationCenter.current()
+        
+        //basic notification content configuration (what to show)
+        let content = UNMutableNotificationContent()
+        content.title = "We miss you!"
+        content.body = "Come back and play the game some more!"
+        content.sound = .default
+        
+        //trigger (when to show it)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        //content and trigger must come in the form of a request
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        center.add(request)
+    }
+    
+    func setPlayReminder() {
+        let center = UNUserNotificationCenter.current()
+        
+        //alert and sound options chosen
+        center.requestAuthorization(options: [.alert, .sound]) { success, error in
+            center.removeAllPendingNotificationRequests()
+            createNotification()
+        }
     }
     
     
