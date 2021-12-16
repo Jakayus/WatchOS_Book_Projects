@@ -86,6 +86,7 @@ struct ContentView: View {
         gameOver = false
         createLevel()
         startTime = Date() //reset whenever a new game is started
+        setPlayReminder()
     }
     
     func tapped(_ index: Int){
@@ -111,6 +112,7 @@ struct ContentView: View {
         let content = UNMutableNotificationContent()
         content.title = "We miss you!"
         content.body = "Come back and play the game some more!"
+        content.categoryIdentifier = "play_reminder" //category
         content.sound = .default
         
         //trigger (when to show it)
@@ -126,9 +128,22 @@ struct ContentView: View {
         
         //alert and sound options chosen
         center.requestAuthorization(options: [.alert, .sound]) { success, error in
-            center.removeAllPendingNotificationRequests()
-            createNotification()
+            if success {
+                registerCategories()
+                center.removeAllPendingNotificationRequests()
+                createNotification()
+                
+            }
         }
+    }
+    
+    func registerCategories() {
+        let center = UNUserNotificationCenter.current()
+        
+        let play = UNNotificationAction(identifier: "play", title: "Play Now", options: .foreground)
+        let category = UNNotificationCategory(identifier: "play_reminder", actions: [play], intentIdentifiers: [])
+        
+        center.setNotificationCategories([category])
     }
     
     
