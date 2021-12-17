@@ -20,7 +20,18 @@ struct ContentView: View {
         "Black" : Color.black
     ]
     
+    let transportation = [
+        "boat": Image(systemName: "ferry"),
+        "bike": Image(systemName: "bicycle"),
+        "plane": Image(systemName: "airplane"),
+        "gas": Image(systemName: "fuelpump"),
+        "person": Image(systemName: "figure.walk"),
+        "tram": Image(systemName: "tram")
+    ]
+    
+    
     @State private var colorKeys = ["Red", "Green", "Blue", "Orange", "Purple", "Black"]
+    @State private var transportKeys = ["boat", "bike", "plane", "gas", "person", "tram"]
     @State private var correctAnswer = 0
     @State private var currentLevel = 0
     @State private var gameOver = false
@@ -31,12 +42,12 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 10) {
             HStack (spacing: 10){
-                text(for: 0)
-                text(for: 1)
+                TransportView(for: 0)
+                TransportView(for: 1)
             }
             HStack (spacing: 10) {
-                text(for: 2)
-                text(for: 3)
+                TransportView(for: 2)
+                TransportView(for: 3)
             }
         }
         .navigationTitle(title)
@@ -55,7 +66,7 @@ struct ContentView: View {
     //MARK: - Methods
     
     //NOTE: this function returns a View, which is then used within the View property above
-    func text(for index: Int) -> some View {
+    func Text_Color(for index: Int) -> some View {
         let title: String
         
         if index == correctAnswer {
@@ -74,11 +85,35 @@ struct ContentView: View {
             }
     }
     
+    //Color blind mode HW assignment
+    func TransportView(for index: Int) -> some View {
+        let title: String
+        
+        if index == correctAnswer {
+            title = transportKeys[transportKeys.count - 1] //use index value that is not part of 0-3
+        } else {
+            title = transportKeys[index]
+        }
+        
+        
+        return VStack {
+            transportation[transportKeys[index]]?.resizable() //why optional?
+                .scaledToFit()
+            Text(title)
+        }
+        .onTapGesture {
+            tapped(index)
+        }
+    }
+    
+    
+    
     func createLevel() {
         title = "Level \(currentLevel)/10"
         
         correctAnswer = Int.random(in: 0...3)
         colorKeys.shuffle() //only the first 4 colors (index 0-3) are used
+        transportKeys.shuffle() //colorblind mode
     }
     
     func startNewGame() {
