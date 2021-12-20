@@ -14,7 +14,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
-            CLKComplicationDescriptor(identifier: "complication", displayName: "Project7", supportedFamilies: CLKComplicationFamily.allCases)
+            CLKComplicationDescriptor(identifier: "complication", displayName: "Project7", supportedFamilies: [.modularSmall, .modularLarge])
             // Multiple complication support can be added here with more descriptors
         ]
         
@@ -53,7 +53,25 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // MARK: - Sample Templates
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
-        // This method will be called once per supported complication, and the results will be cached
-        handler(nil)
+        // This method will be once per supported complication, and the results will be cached
+        
+        switch complication.family {
+        case .modularLarge:
+            let headerText = CLKSimpleTextProvider(text: "Magic 8-Ball", shortText: "8-ball")
+            let body1Text = CLKSimpleTextProvider(text: "Your Prediction", shortText: "Prediction")
+            let template = CLKComplicationTemplateModularLargeStandardBody(headerTextProvider: headerText, body1TextProvider: body1Text)
+            
+            handler(template)
+        
+        case .modularSmall:
+            let text = CLKSimpleTextProvider(text: "🎱")
+            let template = CLKComplicationTemplateModularSmallSimpleText(textProvider: text)
+            
+            handler(template)
+            
+        default:
+            handler(nil)
+        }
     }
+    
 }
