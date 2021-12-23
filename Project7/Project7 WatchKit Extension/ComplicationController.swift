@@ -89,4 +89,38 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         }
     }
     
+    
+    
+    
+    func template(for family: CLKComplicationFamily, date: Date) -> CLKComplicationTemplate {
+        let predictionNumber = Int(date.timeIntervalSince1970) & allAnswers.count
+        let prediction = allAnswers[predictionNumber]
+        
+        switch family {
+        case .modularLarge:
+            let headerText = CLKSimpleTextProvider(text: "Magic 8-ball")
+            let body1Text = CLKSimpleTextProvider(text: prediction)
+            let template = CLKComplicationTemplateModularLargeStandardBody(headerTextProvider: headerText, body1TextProvider: body1Text)
+            
+            return template
+            
+        //modular small
+        default:
+            let text: CLKSimpleTextProvider
+            
+            if positiveAnswers.contains(prediction) {
+                text = CLKSimpleTextProvider(text: "😀")
+            } else if uncertainAnswers.contains(prediction){
+                text = CLKSimpleTextProvider(text: "🤔")
+            } else {
+                text = CLKSimpleTextProvider(text: "😧")
+            }
+            let template = CLKComplicationTemplateModularSmallSimpleText(textProvider: text)
+            
+            return template
+        }
+    }
+    
 }
+
+
