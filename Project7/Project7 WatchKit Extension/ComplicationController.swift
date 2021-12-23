@@ -39,8 +39,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     //returns the last date you can generate info for, or nil if no more future information
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        handler(nil)
+        let endDate = Date().addingTimeInterval(86400)
+        handler(endDate)
     }
     
     //determines when sensitive data can be shown (.onShowLockScreen vs .hideOnLockScreen)
@@ -53,15 +53,35 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     //returns the current information to show on the watch face
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        // Call the handler with the current timeline entry
-        handler(nil)
+        allAnswers = Array(positiveAnswers) + Array(uncertainAnswers) + Array(negativeAnswers)
+        
+        getTimelineEntries(for: complication, after: Date(), limit: 1){
+            handler($0?.first)
+        }
     }
     
     //returns all of the data entries that you have
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        // Call the handler with the timeline entries after the given date
-        handler(nil)
-        allAnswers = Array(positiveAnswers) + Array(uncertainAnswers) + Array(negativeAnswers)
+        //1: Create an empty array to return
+        var entries = [CLKComplicationTimelineEntry]()
+        
+        //2: Create as many entries as requested
+        for i in 0 ..< limit {
+            //3: Calculate the date for this result
+            let predictionDate = date.addingTimeInterval(Double(60*5*i))
+            
+            //4: Fetch a completed template for this date
+            let predictionTemplate = template(for: complication.family, date: predictionDate)
+            
+            //5: Add in the date
+            let entry = CLKComplicationTimelineEntry(date: predictionDate, complicationTemplate: predictionTemplate)
+            
+            //6: Append to our result array
+            entries.append(entry)
+        }
+        
+        //7: Send back the timeline
+        handler(entries)
     }
 
     // MARK: - Sample Templates
