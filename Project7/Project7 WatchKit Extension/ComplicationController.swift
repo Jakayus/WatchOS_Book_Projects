@@ -22,7 +22,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     //describes what your complication is named, and which sizes you support
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
-            CLKComplicationDescriptor(identifier: "complication", displayName: "Project7", supportedFamilies: [.modularSmall, .modularLarge])
+            CLKComplicationDescriptor(identifier: "complication", displayName: "Project7", supportedFamilies: [.modularSmall, .modularLarge, .extraLarge])
             // Multiple complication support can be added here with more descriptors
         ]
         
@@ -104,6 +104,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             
             handler(template)
             
+            
+            
+        case .extraLarge:
+            let text = CLKSimpleTextProvider(text: "🎱")
+            let template = CLKComplicationTemplateExtraLargeSimpleText(textProvider: text)
+            
+            handler (template)
+            
         default:
             handler(nil)
         }
@@ -113,8 +121,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     
     func template(for family: CLKComplicationFamily, date: Date) -> CLKComplicationTemplate {
-        let predictionNumber = Int(date.timeIntervalSince1970) & allAnswers.count
-        let prediction = allAnswers[predictionNumber]
+        
+        //TODO: Unit test prediction value (make sure index is not out of range)
+        var predictionNumber = 0
+        var prediction = ""
+        
+        repeat {
+            predictionNumber = Int(date.timeIntervalSince1970) & allAnswers.count
+        } while predictionNumber >= allAnswers.count
+        
+        
+        prediction = allAnswers[predictionNumber]
+        
         
         switch family {
         case .modularLarge:
@@ -123,6 +141,22 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let template = CLKComplicationTemplateModularLargeStandardBody(headerTextProvider: headerText, body1TextProvider: body1Text)
             
             return template
+        
+        case .extraLarge:
+            let text: CLKSimpleTextProvider
+            
+            if positiveAnswers.contains(prediction) {
+                text = CLKSimpleTextProvider(text: "😀")
+            } else if uncertainAnswers.contains(prediction){
+                text = CLKSimpleTextProvider(text: "🤔")
+            } else {
+                text = CLKSimpleTextProvider(text: "😧")
+            }
+            
+            let template = CLKComplicationTemplateExtraLargeSimpleText(textProvider: text)
+            
+            return template
+            
             
         //modular small
         default:
