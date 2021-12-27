@@ -55,11 +55,35 @@ struct ContentView: View {
         .onReceive(timer) { newTime in
             currentTime = newTime
         }
+        .onAppear(perform: startNewGame)
     }
 
     
     func nextTapped() {
         //method stub
+    }
+    
+    func startNewGame() {
+        //reset the timer
+        startTime = Date()
+        
+        //create an array of random numbers from 1 to 100
+        allSafeNumbers = Array(1...100)
+        allSafeNumbers.shuffle()
+        
+        //reset the current value
+        currentSafeValue = 50
+        
+        //remove all their previous answers and reset the text
+        correctValues.removeAll()
+        
+        //pick the first number to guess
+        pickNumber()
+    }
+    
+    func pickNumber() {
+        targetSafeValue = allSafeNumbers.removeFirst()
+        print(targetSafeValue)
     }
 }
 
