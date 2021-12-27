@@ -35,6 +35,31 @@ struct ContentView: View {
     }
     
     
+    @State var isCorrect: Bool
+    @State var colorActive = false
+    
+    
+    //change color based upon whether answer is correct
+    var answerColor: Color {
+        if isCorrect {
+            return .green
+        } else {
+            return .red
+        }
+    }
+    
+    //if answerColor is active, set color to designated color, otherwise default is applied
+    var currentColor: Color {
+        if colorActive {
+            return answerColor
+        } else {
+            return Color.primary
+        }
+    }
+    
+    
+    
+    
     //MARK: - View
     var body: some View {
         VStack {
@@ -72,6 +97,8 @@ struct ContentView: View {
                 }
                 HStack {
                     Text("\(level)/20")
+                        .foregroundColor(currentColor)
+                    
                     Spacer()
                     Text("Time: \(time)")
                 }
@@ -99,7 +126,7 @@ struct ContentView: View {
             fatalError("Unknown question: \(question)")
         }
         
-        let isCorrect: Bool
+        //let isCorrect: Bool
         
         //determine if move is correct answer
         if shouldWin {
@@ -107,6 +134,14 @@ struct ContentView: View {
         } else {
             isCorrect = move == answer.lose
         }
+        
+        
+        colorActive = true
+        //use GCD asyncAfter to run code after half second (0.5) delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            colorActive = false
+        }
+        
         
         //update levels
         if isCorrect {
@@ -118,12 +153,20 @@ struct ContentView: View {
         
         newLevel()
         
+        print(answer)
+        print(answerColor)
     }
     
     func newLevel() {
-        
         if level == 21 {
-            gameOver = true
+            
+            //delay win screen
+            //use GCD asyncAfter to run code after half second (0.5) delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                gameOver = true
+            }
+            
+            //gameOver = true
             return
         }
         
@@ -153,6 +196,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView( isCorrect: false)
     }
 }

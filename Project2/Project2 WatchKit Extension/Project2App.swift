@@ -12,7 +12,7 @@ struct Project2App: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                ContentView( isCorrect: false)
             }
         }
     }
