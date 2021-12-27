@@ -8,9 +8,58 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    //MARK: - Properties
+    @State private var currentSafeValue = 50.0
+    @State private var targetSafeValue = 0
+    @State private var correctValues = [String]()
+    @State private var allSafeNumbers = [Int]()
+    @State private var title = "Safe Crack"
+    
+    @State private var currentTime = Date()
+    @State private var startTime = Date()
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
+    
+    
+    var answerIsCorrect: Bool {
+        Int(currentSafeValue) == targetSafeValue
+    }
+    
+    var answerColor: Color {
+        if answerIsCorrect {
+            return .green
+        } else {
+            return .red
+        }
+    }
+    
+    var time: String {
+        let difference = currentTime.timeIntervalSince(startTime)
+        return String(Int(difference))
+    }
+    
+    //MARK: - View
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        VStack {
+            Text(title)
+                .font(.title2)
+                .foregroundColor(answerColor)
+            
+            Slider (value: $currentSafeValue, in: 1...100, step: 1)
+            
+            Button("Enter \(Int(currentSafeValue))", action: nextTapped)
+            
+            Text("Time: \(time)")
+        }
+        .onReceive(timer) { newTime in
+            currentTime = newTime
+        }
+    }
+
+    
+    func nextTapped() {
+        //method stub
     }
 }
 
