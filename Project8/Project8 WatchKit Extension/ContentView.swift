@@ -89,6 +89,7 @@ struct ContentView: View {
         //reset the timer
         startTime = Date()
         
+        title = "Safe Crack"
         //create an array of random numbers from 1 to 100
         allSafeNumbers = Array(1...100)
         allSafeNumbers.shuffle()
@@ -101,6 +102,9 @@ struct ContentView: View {
         
         //pick the first number to guess
         pickNumber()
+        
+        print(correctValues)
+        
     }
     
     func pickNumber() {
