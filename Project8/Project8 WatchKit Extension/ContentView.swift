@@ -52,13 +52,16 @@ struct ContentView: View {
             Slider (value: $currentSafeValue, in: 1...100, step: 1)
             
             Button("Enter \(Int(currentSafeValue))", action: nextTapped)
-            
+                .disabled(answerIsCorrect == false)
             Text("Time: \(time)")
         }
         .onReceive(timer) { newTime in
             currentTime = newTime
         }
         .onAppear(perform: startNewGame)
+        .alert(isPresented: $gameOver) {
+            Alert(title: Text("You win!"), message: nil, dismissButton: .default(Text("Play Again"), action: startNewGame))
+        }
     }
 
     
@@ -69,7 +72,10 @@ struct ContentView: View {
         title = correctValues.joined(separator: ", ")
         
         if correctValues.count == 4 {
-            gameOver = true
+            //use GCD asyncAfter to run code after half second (0.5) delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                gameOver = true
+            }
         } else {
             pickNumber()
         }
