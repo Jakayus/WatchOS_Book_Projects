@@ -15,9 +15,12 @@ struct ContentView: View {
     @State private var correctValues = [String]()
     @State private var allSafeNumbers = [Int]()
     @State private var title = "Safe Crack"
+    @State private var gameOver = false
     
     @State private var currentTime = Date()
     @State private var startTime = Date()
+    
+    
     
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
     
@@ -60,7 +63,16 @@ struct ContentView: View {
 
     
     func nextTapped() {
-        //method stub
+        guard answerIsCorrect else { return }
+        
+        correctValues.append(String(targetSafeValue))
+        title = correctValues.joined(separator: ", ")
+        
+        if correctValues.count == 4 {
+            gameOver = true
+        } else {
+            pickNumber()
+        }
     }
     
     func startNewGame() {
