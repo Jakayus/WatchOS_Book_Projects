@@ -20,7 +20,12 @@ struct ContentView: View {
     @State private var currentTime = Date()
     @State private var startTime = Date()
     
+    var time : String {
+        let difference = currentTime.timeIntervalSince(startTime)
+        return String(Int(difference))
+    }
     
+    @State private var finalTime = ""
     
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
     
@@ -36,11 +41,7 @@ struct ContentView: View {
             return .red
         }
     }
-    
-    var time: String {
-        let difference = currentTime.timeIntervalSince(startTime)
-        return String(Int(difference))
-    }
+
     
     //MARK: - View
     var body: some View {
@@ -60,7 +61,7 @@ struct ContentView: View {
         }
         .onAppear(perform: startNewGame)
         .alert(isPresented: $gameOver) {
-            Alert(title: Text("You win!"), message: nil, dismissButton: .default(Text("Play Again"), action: startNewGame))
+            Alert(title: Text("You win!"), message: Text("Your time was: \(finalTime)"), dismissButton: .default(Text("Play Again"), action: startNewGame))
         }
     }
 
@@ -72,6 +73,9 @@ struct ContentView: View {
         title = correctValues.joined(separator: ", ")
         
         if correctValues.count == 4 {
+            //save off time
+            finalTime = time
+            
             //use GCD asyncAfter to run code after half second (0.5) delay
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 gameOver = true
