@@ -22,7 +22,11 @@ struct ContentView: View {
         .clipShape(Circle())
         .scaleEffect(animationAmount)
         .blur(radius: (animationAmount - 1) * 3)
-        .animation(.default, value: animationAmount) // replaces .animation(.default)
+        //.animation(.easeInOut(duration: 2), value: animationAmount) // replaces .animation(.default)
+        .animation(
+            Animation.easeInOut(duration: 1)
+                .repeatCount(3, autoreverses: true)
+            , value: animationAmount)
     }
 }
 
