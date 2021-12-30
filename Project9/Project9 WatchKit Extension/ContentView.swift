@@ -9,22 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var animationAmount = 0.0
+    @State private var isShowingRed = false
     
     var body: some View {
-        
-        Button("Tap Me") {
-            //explicit animation
-            withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)){
-                animationAmount += 360
+     
+        VStack {
+            Button("Tap Me") {
+                withAnimation {
+                    isShowingRed.toggle()
+                }
+                
             }
+            
+            if isShowingRed {
+                Color.red
+                    .frame(width: 100, height: 100)
+                    .transition(.asymmetric(insertion: .scale, removal: .opacity))
+            }
+            
         }
-        .buttonStyle(PlainButtonStyle())
-        .padding(40)
-        .background(Color.red)
-        .foregroundColor(.white)
-        .clipShape(Circle())
-        .rotation3DEffect(.degrees(animationAmount), axis: (x: 1, y: 1, z: 1))
+        
         
     }
 }
