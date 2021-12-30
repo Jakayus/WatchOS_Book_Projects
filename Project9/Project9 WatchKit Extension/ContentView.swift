@@ -12,30 +12,25 @@ struct ContentView: View {
     @State private var animationAmount: CGFloat = 1
     
     var body: some View {
-        Button("Tap Me") {
-            //animationAmount += 0.25
+        print(animationAmount)
+        return VStack{
+            Slider (value: $animationAmount.animation(
+                Animation.easeInOut(duration: 1)
+                    .repeatCount(3, autoreverses: true)
+            ), in: 1...2, step: 0.2)
+            
+            Spacer()
+            
+            Button("Tap Me") {
+                animationAmount = 1
+            }
+            .buttonStyle(PlainButtonStyle())
+            .padding(40)
+            .background(Color.red)
+            .foregroundColor(.white)
+            .clipShape(Circle())
+            .scaleEffect(animationAmount)
         }
-        .buttonStyle(PlainButtonStyle())
-        .padding(50)
-        .background(Color.red)
-        .foregroundColor(.white)
-        .clipShape(Circle())
-       
-
-        //.animation(.easeInOut(duration: 2), value: animationAmount) // replaces .animation(.default)
-        .overlay (
-            Circle()
-                .strokeBorder(Color.red)
-                .scaleEffect(animationAmount)
-                .opacity(Double(2 - animationAmount))
-                .animation(
-                    Animation.easeInOut(duration: 1)
-                        .repeatForever(autoreverses: false)
-                    , value: animationAmount)
-        )
-        .onAppear(perform: {
-            animationAmount = 2
-        })
         
     }
 }
