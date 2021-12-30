@@ -9,28 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var animationAmount: CGFloat = 1
+    @State private var animationAmount = 0.0
     
     var body: some View {
-        print(animationAmount)
-        return VStack{
-            Slider (value: $animationAmount.animation(
-                Animation.easeInOut(duration: 1)
-                    .repeatCount(3, autoreverses: true)
-            ), in: 1...2, step: 0.2)
-            
-            Spacer()
-            
-            Button("Tap Me") {
-                animationAmount = 1
+        
+        Button("Tap Me") {
+            //explicit animation
+            withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)){
+                animationAmount += 360
             }
-            .buttonStyle(PlainButtonStyle())
-            .padding(40)
-            .background(Color.red)
-            .foregroundColor(.white)
-            .clipShape(Circle())
-            .scaleEffect(animationAmount)
         }
+        .buttonStyle(PlainButtonStyle())
+        .padding(40)
+        .background(Color.red)
+        .foregroundColor(.white)
+        .clipShape(Circle())
+        .rotation3DEffect(.degrees(animationAmount), axis: (x: 1, y: 1, z: 1))
         
     }
 }
