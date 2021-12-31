@@ -18,6 +18,7 @@
 		DC3155AE277E7EEB00021149 /* Project10Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3155AD277E7EEB00021149 /* Project10Tests.swift */; };
 		DC3155B8277E7EEB00021149 /* Project10UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3155B7277E7EEB00021149 /* Project10UITests.swift */; };
 		DC3155BA277E7EEB00021149 /* Project10UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3155B9277E7EEB00021149 /* Project10UITestsLaunchTests.swift */; };
+		DC3155CF277E7F4600021149 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3155CE277E7F4600021149 /* WorkoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		DC3155B3277E7EEB00021149 /* Project10UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Project10UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3155B7277E7EEB00021149 /* Project10UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project10UITests.swift; sourceTree = "<group>"; };
 		DC3155B9277E7EEB00021149 /* Project10UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project10UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DC3155CE277E7F4600021149 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 		DC315598277E7EE800021149 /* Project10 WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DC3155CE277E7F4600021149 /* WorkoutView.swift */,
 				DC315599277E7EE800021149 /* ContentView.swift */,
 				DC31559B277E7EE800021149 /* Project10App.swift */,
 				DC31559D277E7EE800021149 /* ComplicationController.swift */,
@@ -377,6 +380,7 @@
 			files = (
 				DC31559C277E7EE800021149 /* Project10App.swift in Sources */,
 				DC31559A277E7EE800021149 /* ContentView.swift in Sources */,
+				DC3155CF277E7F4600021149 /* WorkoutView.swift in Sources */,
 				DC31559E277E7EE800021149 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
