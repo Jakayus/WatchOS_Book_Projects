@@ -19,6 +19,8 @@
 		DC3155B8277E7EEB00021149 /* Project10UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3155B7277E7EEB00021149 /* Project10UITests.swift */; };
 		DC3155BA277E7EEB00021149 /* Project10UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3155B9277E7EEB00021149 /* Project10UITestsLaunchTests.swift */; };
 		DC3155CF277E7F4600021149 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3155CE277E7F4600021149 /* WorkoutView.swift */; };
+		DC3155D3277E8C3800021149 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3155D2277E8C3800021149 /* HealthKit.framework */; };
+		DC3155D5277E8C8700021149 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3155D4277E8C8700021149 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,9 @@
 		DC3155B7277E7EEB00021149 /* Project10UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project10UITests.swift; sourceTree = "<group>"; };
 		DC3155B9277E7EEB00021149 /* Project10UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project10UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DC3155CE277E7F4600021149 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		DC3155D0277E8C3800021149 /* Project10 WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project10 WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		DC3155D2277E8C3800021149 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.3.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		DC3155D4277E8C8700021149 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC3155D3277E8C3800021149 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,11 +130,13 @@
 		DC31557E277E7EE600021149 = {
 			isa = PBXGroup;
 			children = (
+				DC3155D4277E8C8700021149 /* DataManager.swift */,
 				DC31558D277E7EE700021149 /* Project10 WatchKit App */,
 				DC315598277E7EE800021149 /* Project10 WatchKit Extension */,
 				DC3155AC277E7EEB00021149 /* Project10Tests */,
 				DC3155B6277E7EEB00021149 /* Project10UITests */,
 				DC315586277E7EE600021149 /* Products */,
+				DC3155D1277E8C3800021149 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +163,7 @@
 		DC315598277E7EE800021149 /* Project10 WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DC3155D0277E8C3800021149 /* Project10 WatchKit Extension.entitlements */,
 				DC3155CE277E7F4600021149 /* WorkoutView.swift */,
 				DC315599277E7EE800021149 /* ContentView.swift */,
 				DC31559B277E7EE800021149 /* Project10App.swift */,
@@ -189,6 +198,14 @@
 				DC3155B9277E7EEB00021149 /* Project10UITestsLaunchTests.swift */,
 			);
 			path = Project10UITests;
+			sourceTree = "<group>";
+		};
+		DC3155D1277E8C3800021149 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC3155D2277E8C3800021149 /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC31559C277E7EE800021149 /* Project10App.swift in Sources */,
+				DC3155D5277E8C8700021149 /* DataManager.swift in Sources */,
 				DC31559A277E7EE800021149 /* ContentView.swift in Sources */,
 				DC3155CF277E7F4600021149 /* WorkoutView.swift in Sources */,
 				DC31559E277E7EE800021149 /* ComplicationController.swift in Sources */,
@@ -546,6 +564,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Project10 WatchKit Extension/Project10 WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Project10 WatchKit Extension/Preview Content\"";
@@ -577,6 +596,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Project10 WatchKit Extension/Project10 WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Project10 WatchKit Extension/Preview Content\"";
