@@ -19,24 +19,32 @@ struct ContentView: View {
     
     @State private var selectedActivity = 0
     
+    @StateObject var dataManager = DataManager()
     
     
     //MARK: - View
     var body: some View {
-        VStack {
-            Picker("Choose an activity", selection: $selectedActivity) {
-                ForEach(0..<activities.count) { index in
-                    Text(activities[index].name)
+        //Display view if workout is not active
+        if dataManager.state == .inactive {
+            VStack {
+                Picker("Choose an activity", selection: $selectedActivity) {
+                    ForEach(0..<activities.count) { index in
+                        Text(activities[index].name)
+                    }
                 }
-            }
-            
-            Button("Start Workout") {
-                guard HKHealthStore.isHealthDataAvailable() else { return }
-            }
-            
-            
-        }//end VStack
-    }
+                
+                Button("Start Workout") {
+                    guard HKHealthStore.isHealthDataAvailable() else { return }
+                    
+                    dataManager.activity = activities[selectedActivity].type
+                    dataManager.start()
+                }
+            }//end VStack
+        } else {
+            WorkoutView()
+        }
+    }//end View
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

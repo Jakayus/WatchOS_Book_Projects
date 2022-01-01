@@ -130,7 +130,6 @@
 		DC31557E277E7EE600021149 = {
 			isa = PBXGroup;
 			children = (
-				DC3155D4277E8C8700021149 /* DataManager.swift */,
 				DC31558D277E7EE700021149 /* Project10 WatchKit App */,
 				DC315598277E7EE800021149 /* Project10 WatchKit Extension */,
 				DC3155AC277E7EEB00021149 /* Project10Tests */,
@@ -164,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				DC3155D0277E8C3800021149 /* Project10 WatchKit Extension.entitlements */,
+				DC3155D4277E8C8700021149 /* DataManager.swift */,
 				DC3155CE277E7F4600021149 /* WorkoutView.swift */,
 				DC315599277E7EE800021149 /* ContentView.swift */,
 				DC31559B277E7EE800021149 /* Project10App.swift */,
