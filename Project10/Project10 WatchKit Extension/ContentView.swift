@@ -19,7 +19,7 @@ struct ContentView: View {
     
     @State private var selectedActivity = 0
     
-    @StateObject var dataManager = DataManager()
+    @StateObject var dataManager = DataManager() //@StateObject allows you to watch a class for changes
     
     
     //MARK: - View
@@ -41,7 +41,7 @@ struct ContentView: View {
                 }
             }//end VStack
         } else {
-            WorkoutView()
+            WorkoutView(dataManager: dataManager)
         }
     }//end View
     

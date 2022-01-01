@@ -21,8 +21,11 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
     
     var activity = HKWorkoutActivityType.cycling
     
-    var state  = WorkoutState.inactive
-
+    @Published var state  = WorkoutState.inactive
+    @Published var totalEnergyBurned = 0.0
+    @Published var totalDistance = 0.0
+    @Published var lastHeartRate = 0.0
+    
     func start() {
         let sampleTypes: Set<HKSampleType> = [
         
@@ -82,7 +85,26 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
     }
     
     func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
-        
+        for type in collectedTypes{
+            guard let quantityType = type as? HKQuantityType else { continue }
+            guard let statistics = workoutBuilder.statistics(for: quantityType) else { continue }
+            
+            DispatchQueue.main.async {
+                switch statistics.quantityType {
+                case HKQuantityType.quantityType(forIdentifier: .heartRate):
+                    let heartRateUnit = HKUnit.count().unitDivided(by: .minute())
+                    self.lastHeartRate = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit) ?? 0
+                
+                case HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned):
+                    let value = statistics.sumQuantity()?.doubleValue(for: .kilocalorie()) ?? 0
+                    self.totalEnergyBurned = value
+                    
+                default:
+                    let value = statistics.sumQuantity()?.doubleValue(for: .meter())
+                    self.totalDistance = value ?? 0
+                }
+            }
+        }
     }
     
     func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
