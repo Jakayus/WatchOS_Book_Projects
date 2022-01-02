@@ -27,18 +27,33 @@ struct ContentView: View {
         //Display view if workout is not active
         if dataManager.state == .inactive {
             VStack {
-                Picker("Choose an activity", selection: $selectedActivity) {
-                    ForEach(0..<activities.count) { index in
-                        Text(activities[index].name)
+//                Picker("Choose an activity", selection: $selectedActivity) {
+//                    ForEach(0..<activities.count) { index in
+//                        Text(activities[index].name)
+//                    }
+//                }
+                
+                List {
+                    ForEach(0..<activities.count, id: \.self) { index in
+                        Button {
+                            guard HKHealthStore.isHealthDataAvailable() else { return }
+                            
+                            dataManager.activity = activities[selectedActivity].type
+                            dataManager.start()
+                        } label: {
+                            Text(activities[index].0)
+                        }
+
                     }
                 }
                 
-                Button("Start Workout") {
-                    guard HKHealthStore.isHealthDataAvailable() else { return }
-                    
-                    dataManager.activity = activities[selectedActivity].type
-                    dataManager.start()
-                }
+                
+//                Button("Start Workout") {
+//                    guard HKHealthStore.isHealthDataAvailable() else { return }
+//
+//                    dataManager.activity = activities[selectedActivity].type
+//                    dataManager.start()
+//                }
             }//end VStack
         } else {
             WorkoutView(dataManager: dataManager)
