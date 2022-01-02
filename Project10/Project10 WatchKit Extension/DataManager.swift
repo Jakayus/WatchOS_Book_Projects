@@ -26,6 +26,8 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
     @Published var totalEnergyBurned = 0.0
     @Published var totalDistance = 0.0
     @Published var lastHeartRate = 0.0
+    @Published var saveData = false
+    
     
     func start() {
         let sampleTypes: Set<HKSampleType> = [
@@ -90,7 +92,12 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
                 self.state = .paused
                 
             case .ended:
-                self.save()
+                if self.saveData == true {
+                    self.save()
+                } else {
+                    self.discard()
+                }
+                
                 
             default:
                 break
@@ -150,9 +157,21 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
             self.workoutBuilder?.finishWorkout { workout, error in
                 DispatchQueue.main.async {
                     self.state = .inactive
+                    self.saveData = false //reset value
                 }
             }
         }
+        //Debug
+        print("Function: \(#function), line: \(#line)")
+    }
+    
+    private func discard() {
+        workoutBuilder?.discardWorkout()
+        DispatchQueue.main.async {
+            self.state = .inactive
+        }
+        //Debug
+        print("Function: \(#function), line: \(#line)")
     }
 
 }

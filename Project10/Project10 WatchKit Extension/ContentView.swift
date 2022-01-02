@@ -56,7 +56,7 @@ struct ContentView: View {
 //                }
             }//end VStack
         } else {
-            WorkoutView(dataManager: dataManager)
+            WorkoutView(dataManager: dataManager, endWorkout: false)
         }
     }//end View
     

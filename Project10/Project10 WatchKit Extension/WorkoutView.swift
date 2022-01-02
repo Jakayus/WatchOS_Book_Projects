@@ -43,6 +43,7 @@ struct WorkoutView: View {
         }
     }
     
+    @State var endWorkout: Bool
 
     //MARK: - View
     var body: some View {
@@ -56,14 +57,35 @@ struct WorkoutView: View {
             .onTapGesture(perform: changeDisplayMode)
             
             if dataManager.state == .active {
-                Button("Stop", action: {dataManager.pause()})
+                Button("Stop", action: {
+                    dataManager.pause()
+                    endWorkout = false
+                })
+                
             } else {
                 Button("Resume", action: {dataManager.resume()})
-                Button("End", action: {dataManager.end()})
+                Button("End", action: {
+                    //dataManager.end()
+                    endWorkout = true
+                })
             }
             
             
         }
+        .alert("Ending Workout", isPresented: $endWorkout) {
+            Button("Save") {
+                dataManager.saveData = true
+                dataManager.end()
+            }
+            Button("Discard") {
+                dataManager.end()
+            }
+        } message: {
+            Text("Would you like to save the workout?")
+        }
+
+        
+        
     }
     
     //MARK: -  Methods
@@ -83,6 +105,6 @@ struct WorkoutView: View {
 
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutView(dataManager: DataManager())
+        WorkoutView(dataManager: DataManager(), endWorkout: true)
     }
 }
