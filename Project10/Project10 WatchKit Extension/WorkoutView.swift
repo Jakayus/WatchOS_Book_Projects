@@ -56,10 +56,10 @@ struct WorkoutView: View {
             .onTapGesture(perform: changeDisplayMode)
             
             if dataManager.state == .active {
-                Button("Stop", action: {})
+                Button("Stop", action: {dataManager.pause()})
             } else {
-                Button("Resume", action: {})
-                Button("End", action: {})
+                Button("Resume", action: {dataManager.resume()})
+                Button("End", action: {dataManager.end()})
             }
             
             

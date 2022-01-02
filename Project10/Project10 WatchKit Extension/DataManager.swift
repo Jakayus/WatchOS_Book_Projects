@@ -21,6 +21,7 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
     
     var activity = HKWorkoutActivityType.cycling
     
+    //SwiftUI views will be accessing these values
     @Published var state  = WorkoutState.inactive
     @Published var totalEnergyBurned = 0.0
     @Published var totalDistance = 0.0
@@ -55,6 +56,7 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
             workoutBuilder = workoutSession?.associatedWorkoutBuilder()
             workoutBuilder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: config)
             
+            //Healthkit requires delegates
             workoutSession?.delegate = self
             workoutBuilder?.delegate = self
             
@@ -76,14 +78,32 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
     }
     
     //Delegate required stubs
+    
+    //called when the workout session changes state
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
-        
+        DispatchQueue.main.async {
+            switch toState {
+            case .running:
+                self.state = .active
+            
+            case .paused:
+                self.state = .paused
+                
+            case .ended:
+                self.save()
+                
+            default:
+                break
+            }
+        }
     }
     
+    //called when something went wrong while workout was active
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
         
     }
     
+    //called when workout builder receives some data
     func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {
         for type in collectedTypes{
             guard let quantityType = type as? HKQuantityType else { continue }
@@ -107,10 +127,33 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
         }
     }
     
+    //called when workout builder received an event
     func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
         
     }
     
+    func pause() {
+        workoutSession?.pause()
+    }
+    
+    func resume() {
+        workoutSession?.resume()
+    }
+    
+    func end() {
+        workoutSession?.end()
+    }
+    
+    //note that this function changes the UI, so it will be on the main thread
+    private func save() {
+        workoutBuilder?.endCollection(withEnd: Date()) { success, error in
+            self.workoutBuilder?.finishWorkout { workout, error in
+                DispatchQueue.main.async {
+                    self.state = .inactive
+                }
+            }
+        }
+    }
 
 }
 
