@@ -18,6 +18,7 @@
 		DC3156062782BE5F00021149 /* Project11Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3156052782BE5F00021149 /* Project11Tests.swift */; };
 		DC3156102782BE5F00021149 /* Project11UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC31560F2782BE5F00021149 /* Project11UITests.swift */; };
 		DC3156122782BE5F00021149 /* Project11UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3156112782BE5F00021149 /* Project11UITestsLaunchTests.swift */; };
+		DC3156272782C11400021149 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3156262782C11400021149 /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		DC31560B2782BE5F00021149 /* Project11UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Project11UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC31560F2782BE5F00021149 /* Project11UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project11UITests.swift; sourceTree = "<group>"; };
 		DC3156112782BE5F00021149 /* Project11UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project11UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DC3156262782C11400021149 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				DC3155F42782BE5C00021149 /* InterfaceController.swift */,
+				DC3156262782C11400021149 /* GameScene.swift */,
 				DC3155F62782BE5C00021149 /* ExtensionDelegate.swift */,
 				DC3155F82782BE5C00021149 /* ComplicationController.swift */,
 				DC3155FA2782BE5D00021149 /* Assets.xcassets */,
@@ -369,6 +372,7 @@
 			files = (
 				DC3155F72782BE5C00021149 /* ExtensionDelegate.swift in Sources */,
 				DC3155F52782BE5C00021149 /* InterfaceController.swift in Sources */,
+				DC3156272782C11400021149 /* GameScene.swift in Sources */,
 				DC3155F92782BE5C00021149 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
