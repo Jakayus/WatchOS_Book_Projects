@@ -35,9 +35,14 @@ class InterfaceController: WKInterfaceController {
         
         gameScene = GameScene()
         gameScene.scaleMode = .resizeFill //allows design to scale across all sizes
-        gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5) //center
+        gameScene.anchorPoint = CGPoint(x: 0.5, y: 0.5) //center the scene
         
         gameInterface.presentScene(gameScene) // show scene immediately
         
+        crownSequencer.delegate = gameScene
+    }
+    
+    override func didAppear() {
+        crownSequencer.focus()
     }
 }
