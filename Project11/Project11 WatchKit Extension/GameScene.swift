@@ -23,6 +23,8 @@ class GameScene: SKScene, WKCrownDelegate {
     var alertDelay = 1.0
     var moveSpeed = 70.0
     
+    var createDelay = 0.5
+    
     func createPlayer(color: String) -> SKSpriteNode {
         
         //load a node
@@ -65,6 +67,9 @@ class GameScene: SKScene, WKCrownDelegate {
             addChild(edge)
         }
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + createDelay) {
+            self.launchBall()
+        }
     }
     
     override func didChangeSize(_ oldSide: CGSize) {
@@ -97,6 +102,55 @@ class GameScene: SKScene, WKCrownDelegate {
             return (CGPoint(x:0, y: 120), CGVector(dx: 0, dy: -moveSpeed), topEdge)
                         
         }
+    }
+    
+    func createBall(color: String) -> SKSpriteNode {
+        
+        let ball = SKSpriteNode(imageNamed: "ball\(color)")
+        ball.name = color
+        ball.physicsBody = SKPhysicsBody(circleOfRadius: 12)
+        ball.physicsBody!.linearDamping = 0
+        ball.physicsBody!.affectedByGravity = false
+        ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
+        
+        addChild(ball)
+        return ball
+    }
+    
+    func launchBall() {
+        //bail out if the game is over
+        guard isPlayerAlive else { return }
+        
+        //pick a random ball color
+        let ballType = Int.random(in: 0 ..< colorNames.count - 1)
+        
+        //create a ball from that random color
+        let ball = createBall(color: colorNames[ballType])
+        
+        //get a random edge to launch from, plus position and force to apply
+        let (position, force, edge) = pickEdge()  //this takes values from pickEdge() and assigns them to position, force, and edge respectively. this is known as destructuring
+        
+        //place the ball at its starting position
+        ball.position = position
+        
+        let flashEdge = SKAction.run {
+            edge.color = self.colorValues[ballType]
+            edge.alpha = 1
+        }
+        
+        let resetEdge = SKAction.run {
+            edge.alpha = 0
+        }
+        
+        let launchBall = SKAction.run {
+            ball.physicsBody!.velocity = force
+        }
+        
+        //pass an array of actions to SKAction.sequence()
+        let sequence = SKAction.sequence([flashEdge, SKAction.wait(forDuration: alertDelay), resetEdge, launchBall])
+        
+        run(sequence)
+        alertDelay *= 0.98
     }
     
 }
