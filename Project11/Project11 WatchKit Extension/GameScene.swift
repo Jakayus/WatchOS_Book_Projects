@@ -8,7 +8,7 @@
 import SpriteKit
 import WatchKit
 
-class GameScene: SKScene, WKCrownDelegate {
+class GameScene: SKScene, WKCrownDelegate, SKPhysicsContactDelegate {
 
     let player = SKNode()
     
@@ -30,6 +30,9 @@ class GameScene: SKScene, WKCrownDelegate {
         //load a node
         let component = SKSpriteNode(imageNamed: "player\(color)")
         
+        component.physicsBody = SKPhysicsBody(texture: component.texture!, size: component.size)
+        component.physicsBody?.isDynamic = false
+        
         //name the node its color
         component.name = color
         
@@ -40,6 +43,9 @@ class GameScene: SKScene, WKCrownDelegate {
     }
     
     func setUp() {
+        
+        physicsWorld.contactDelegate = self
+        
         backgroundColor = .black
         
         let red = createPlayer(color: "Red")
@@ -151,6 +157,28 @@ class GameScene: SKScene, WKCrownDelegate {
         
         run(sequence)
         alertDelay *= 0.98
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        
+        if nodeA.parent == self {
+            ball(nodeA, hit: nodeB)
+        } else if nodeB.parent == self {
+            ball(nodeB, hit: nodeA)
+        } else {
+            //neither? just exit
+            return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + createDelay) {
+            self.launchBall()
+        }
+    }
+    
+    func ball(_ ball: SKNode, hit color: SKNode) {
+        
     }
     
 }
