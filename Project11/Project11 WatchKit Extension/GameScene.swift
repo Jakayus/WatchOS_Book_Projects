@@ -25,6 +25,15 @@ class GameScene: SKScene, WKCrownDelegate, SKPhysicsContactDelegate {
     
     var createDelay = 0.5
     
+    weak var parentInterfaceController: InterfaceController? //weak var allows us to avoid infinite loop by allowing interface controller to go away
+    
+    var score = 0 {
+        didSet {
+            parentInterfaceController?.setTitle("Score: \(score)")
+        }
+    }
+    
+    
     func createPlayer(color: String) -> SKSpriteNode {
         
         //load a node
@@ -178,6 +187,29 @@ class GameScene: SKScene, WKCrownDelegate, SKPhysicsContactDelegate {
     }
     
     func ball(_ ball: SKNode, hit color: SKNode) {
+        //don't run this more than once
+        guard isPlayerAlive else { return }
+        
+        //destroy the ball no matter what
+        ball.removeFromParent()
+        
+        if ball.name == color.name {
+            //player scored a point!
+            score += 1
+        } else{
+            isPlayerAlive = false
+            
+            let gameOver = SKSpriteNode(imageNamed: "gameOver")
+            gameOver.xScale = 2.0
+            gameOver.yScale = 2.0
+            gameOver.alpha = 0
+            addChild(gameOver)
+            
+            let fadeIn = SKAction.fadeIn(withDuration: 0.5)
+            let scaleDown = SKAction.scale(to: 1, duration: 0.5)
+            let group = SKAction.group([fadeIn, scaleDown])
+            gameOver.run(group)
+        }
         
     }
     
