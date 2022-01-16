@@ -8,6 +8,13 @@
 import Foundation
 import WatchConnectivity
 
+//MARK: - extra functions
+
+func getDocumentsDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return paths[0]
+}
+
 
 class Connectivity: NSObject, ObservableObject, WCSessionDelegate{
     
@@ -54,6 +61,27 @@ class Connectivity: NSObject, ObservableObject, WCSessionDelegate{
         }
     }
     
+    
+    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        let fm = FileManager.default
+        let destURL = getDocumentsDirectory().appendingPathComponent("saved_file")
+        
+        do {
+            if fm.fileExists(atPath: destURL.path){
+                try fm.removeItem(at: destURL)
+            }
+            
+            try fm.copyItem(at: file.fileURL, to: destURL)
+            let contents = try String(contentsOf: destURL)
+            receivedText = "Received file: \(contents)"
+        } catch {
+            receivedText = "File copy failed"
+        }
+    }
+    
+    
+    
+    
     func sendMessage(_ data: [String: Any]){
         let session = WCSession.default
         
@@ -75,6 +103,14 @@ class Connectivity: NSObject, ObservableObject, WCSessionDelegate{
             } catch {
                 receivedText = "Alert! Updating app context failed"
             }
+        }
+    }
+    
+    func sendFile(_ url: URL){
+        let session = WCSession.default
+        
+        if session.activationState == .activated{
+            session.transferFile(url, metadata: nil)
         }
     }
     

@@ -32,7 +32,14 @@ struct ContentView: View {
     }
     
     func sendFile() {
+        let fm = FileManager.default
+        let sourceURL = getDocumentsDirectory().appendingPathComponent("saved_file")
         
+        if fm.fileExists(atPath: sourceURL.path) == false {
+            try? "Hello, a phone file".write(to: sourceURL, atomically: true, encoding: .utf8)
+        }
+        
+        connectivity.sendFile(sourceURL)
     }
     
     func sendComplication() {
