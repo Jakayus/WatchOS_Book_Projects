@@ -43,7 +43,9 @@ struct ContentView: View {
     }
     
     func sendComplication() {
-        
+        let randomNumber = String(Int.random(in: 0...9))
+        let message = ["number":randomNumber]
+        connectivity.updateComplication(with: message)
     }
 }
 

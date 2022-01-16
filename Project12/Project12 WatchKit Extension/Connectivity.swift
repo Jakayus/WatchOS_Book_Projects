@@ -7,6 +7,7 @@
 
 import Foundation
 import WatchConnectivity
+import ClockKit
 
 //MARK: - extra functions
 
@@ -42,6 +43,19 @@ class Connectivity: NSObject, ObservableObject, WCSessionDelegate{
         DispatchQueue.main.async {
             if let text = userInfo["text"] as? String {
                 self.receivedText = text
+            } else {
+                #if os(watchOS)
+                if let number = userInfo["number"] as? String {
+                    UserDefaults.standard.set(number, forKey: "complication number")
+                    
+                    let server = CLKComplicationServer.sharedInstance()
+                    guard let complications = server.activeComplications else { return }
+                    
+                    for complication in complications{
+                        server.reloadTimeline(for: complication)
+                    }
+                }
+                #endif
             }
         }
     }
@@ -133,6 +147,15 @@ class Connectivity: NSObject, ObservableObject, WCSessionDelegate{
     
     func sessionDidDeactivate(_ session: WCSession) {
         
+    }
+    
+    func updateComplication(with data: [String:Any]){
+        let session = WCSession.default
+        
+        if session.activationState == .activated && session.isComplicationEnabled{
+            session.transferCurrentComplicationUserInfo(data)
+            receivedText = "Attempted to send complication data. Remaining transfers. :\(session.remainingComplicationUserInfoTransfers)"
+        }
     }
     #else
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
