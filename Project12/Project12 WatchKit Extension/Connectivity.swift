@@ -39,6 +39,27 @@ class Connectivity: NSObject, ObservableObject, WCSessionDelegate{
         }
     }
     
+    func session(_ session: WCSession, didReceiveMessage message: [String:Any], replyHandler: @escaping([String: Any]) -> Void) {
+        DispatchQueue.main.async {
+            if let text = message["text"] as? String {
+                self.receivedText = text
+                replyHandler(["response": "Be excellent to each other"])
+            }
+        }
+    }
+    
+    func sendMessage(_ data: [String: Any]){
+        let session = WCSession.default
+        
+        if session.isReachable {
+            session.sendMessage(data) { response in
+                DispatchQueue.main.async {
+                    self.receivedText = "Received response: \(response)"
+                }
+            }
+        }
+    }
+    
     //MARK: - Compiler Directives
     #if os(iOS)
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
