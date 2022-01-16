@@ -48,6 +48,12 @@ class Connectivity: NSObject, ObservableObject, WCSessionDelegate{
         }
     }
     
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]){
+        DispatchQueue.main.async {
+            self.receivedText = "Application context received: \(applicationContext)"
+        }
+    }
+    
     func sendMessage(_ data: [String: Any]){
         let session = WCSession.default
         
@@ -56,6 +62,18 @@ class Connectivity: NSObject, ObservableObject, WCSessionDelegate{
                 DispatchQueue.main.async {
                     self.receivedText = "Received response: \(response)"
                 }
+            }
+        }
+    }
+    
+    func setContext(to data: [String: Any]) {
+        let session = WCSession.default
+        
+        if session.activationState == .activated {
+            do {
+                try session.updateApplicationContext(data)
+            } catch {
+                receivedText = "Alert! Updating app context failed"
             }
         }
     }
