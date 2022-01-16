@@ -25,6 +25,8 @@
 		DC6075B32793C52000F738DC /* Project12_WatchKit_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6075B22793C52000F738DC /* Project12_WatchKit_AppTests.swift */; };
 		DC6075BD2793C52000F738DC /* Project12_WatchKit_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6075BC2793C52000F738DC /* Project12_WatchKit_AppUITests.swift */; };
 		DC6075BF2793C52000F738DC /* Project12_WatchKit_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6075BE2793C52000F738DC /* Project12_WatchKit_AppUITestsLaunchTests.swift */; };
+		DC6075DA2793CAC100F738DC /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6075D92793CAC100F738DC /* Connectivity.swift */; };
+		DC6075DB2793CAC100F738DC /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6075D92793CAC100F738DC /* Connectivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +124,7 @@
 		DC6075B82793C52000F738DC /* Project12 WatchKit AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project12 WatchKit AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6075BC2793C52000F738DC /* Project12_WatchKit_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project12_WatchKit_AppUITests.swift; sourceTree = "<group>"; };
 		DC6075BE2793C52000F738DC /* Project12_WatchKit_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project12_WatchKit_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DC6075D92793CAC100F738DC /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Connectivity.swift; path = "Project12 WatchKit Extension/Connectivity.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +204,7 @@
 		DC60756C2793C51A00F738DC /* Project12 */ = {
 			isa = PBXGroup;
 			children = (
+				DC6075D92793CAC100F738DC /* Connectivity.swift */,
 				DC60756D2793C51A00F738DC /* Project12App.swift */,
 				DC60756F2793C51A00F738DC /* ContentView.swift */,
 				DC6075712793C51B00F738DC /* Assets.xcassets */,
@@ -533,6 +537,7 @@
 			files = (
 				DC6075702793C51A00F738DC /* ContentView.swift in Sources */,
 				DC60756E2793C51A00F738DC /* Project12App.swift in Sources */,
+				DC6075DA2793CAC100F738DC /* Connectivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +562,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC6075DB2793CAC100F738DC /* Connectivity.swift in Sources */,
 				DC6075A12793C51D00F738DC /* Project12App.swift in Sources */,
 				DC60759F2793C51D00F738DC /* ContentView.swift in Sources */,
 				DC6075A32793C51D00F738DC /* ComplicationController.swift in Sources */,

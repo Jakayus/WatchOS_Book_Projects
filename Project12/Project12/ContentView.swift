@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @StateObject var connectivity = Connectivity()
+    
     var body: some View {
         VStack(spacing: 30) {
+            Text("\(connectivity.receivedText)")
             Button("Message", action: sendMessage)
             Button("Context", action: sendContext)
             Button("File", action: sendFile)

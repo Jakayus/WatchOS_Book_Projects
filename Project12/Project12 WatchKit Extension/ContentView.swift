@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var connectivity = Connectivity()
+    
     var body: some View {
         VStack{
             Text("Response Text")
