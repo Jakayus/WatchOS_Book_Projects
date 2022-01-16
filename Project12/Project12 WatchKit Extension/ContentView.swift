@@ -9,8 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        VStack{
+            Text("Response Text")
+            Button("Message", action: sendMessage)
+        }
+    }
+    
+    //MARK: - Methods
+    func sendMessage() {
+        
     }
 }
 
