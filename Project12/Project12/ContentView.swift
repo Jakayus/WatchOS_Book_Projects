@@ -23,7 +23,8 @@ struct ContentView: View {
     
     //MARK: - Methods
     func sendMessage() {
-        
+        let data = ["text": "User info from the phone"]
+        connectivity.transferUserInfo(data)
     }
     
     func sendContext() {

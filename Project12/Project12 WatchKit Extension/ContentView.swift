@@ -13,14 +13,15 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
-            Text("Response Text")
+            Text(connectivity.receivedText)
             Button("Message", action: sendMessage)
         }
     }
     
     //MARK: - Methods
     func sendMessage() {
-        
+        let data = ["text": "Hello from the watch"]
+        connectivity.transferUserInfo(data)
     }
 }
 
