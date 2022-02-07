@@ -103,6 +103,7 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
                 break
             }
         }
+        print("Function: \(#function), line: \(#line)")
     }
     
     //called when something went wrong while workout was active
@@ -141,14 +142,17 @@ class DataManager: NSObject, ObservableObject, HKWorkoutSessionDelegate, HKLiveW
     
     func pause() {
         workoutSession?.pause()
+        print("Function: \(#function), line: \(#line)")
     }
     
     func resume() {
         workoutSession?.resume()
+        print("Function: \(#function), line: \(#line)")
     }
     
     func end() {
         workoutSession?.end()
+        print("Function: \(#function), line: \(#line)")
     }
     
     //note that this function changes the UI, so it will be on the main thread
